@@ -40,7 +40,7 @@ def extract_from_opensky ():
         flights_data = requests.get(OpenSky_url).json()
         begin_date = end_date + timedelta(hours=1)
         dict_flights['flight'].extend(flights_data)
-        
+    
     return dict_flights
     
     
