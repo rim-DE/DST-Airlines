@@ -36,3 +36,4 @@ with open('flights_data.json', encoding='utf-8') as f:
     data = json.load(f)
     for doc in data['flight']:
         es.index(index="flights", document=doc)
+        
