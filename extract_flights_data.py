@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 # strptime convert string to date
 
 
+<<<<<<< HEAD
 
 # on définit la date de début
 
@@ -50,6 +51,36 @@ while (begin_date <= end):
 #exporter l'ensemble des données extraites dans un fichier json
     with open ('flights_data.json', 'w') as f:
         json.dump(dict_flights, f)
+=======
+def extract_from_opensky ():
+    # on définit la date de début
+
+    begin_date = datetime.strptime(datetime.strftime(datetime.now() - timedelta(2), '%Y-%m-%d'), '%Y-%m-%d')
+    begin_date += timedelta(hours=20, minutes=00) 
+
+    end = datetime.strptime(datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d'), '%Y-%m-%d')
+    end += timedelta(hours=18, minutes=00) 
+
+    user_name='rim-DE'
+    password='bde_airlines'
+
+    dict_flights = {
+        'flight' : []
+    }
+    print (dict_flights)
+    # Extract data from Opensky API
+    # on ne peut récupérer les données que par plage de deux heures
+    while (begin_date <= end):
+        end_date = begin_date + timedelta(hours=2)
+        timestamp_begin_date = int(datetime.timestamp(begin_date))
+        timestamp_end_date = int(datetime.timestamp(end_date))
+        OpenSky_url = 'https://'+user_name+':'+password+'@opensky-network.org/api/flights/all?begin='+str(timestamp_begin_date)+'&end='+str(timestamp_end_date)
+        flights_data = requests.get(OpenSky_url).json()
+        begin_date = end_date + timedelta(hours=1)
+        dict_flights['flight'].extend(flights_data)
+    
+    return dict_flights
+>>>>>>> 0a3505751895df166c022b6da74304861a1d92d3
     
     
 
