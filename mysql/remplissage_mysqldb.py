@@ -1,7 +1,7 @@
 
 import mysql.connector
 import json
-import html_scrapping
+import mysql.html_scrapping as html_scrapping
 
 # fonction de connexion à la base
 def connection():

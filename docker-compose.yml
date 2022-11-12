@@ -60,7 +60,7 @@ services:
       - "3306:3306"
     volumes:
       - "./db-data:/var/lib/mysql"
-      - "./script/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - ".mysql/script/schema.sql:/docker-entrypoint-initdb.d/1.sql"
 
 networks:
   es-net:
