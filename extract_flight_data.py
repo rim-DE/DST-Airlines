@@ -39,7 +39,10 @@ while (begin_date <= end):
     OpenSky_url = 'https://'+user_name+':'+password+'@opensky-network.org/api/flights/all?begin='+str(timestamp_begin_date)+'&end='+str(timestamp_end_date)
     flights_data = requests.get(OpenSky_url).json()
     #Traansformer les timestamps en dates
-    begin_date = end_date + timedelta(hours=1)
+    #begin_date = end_date + timedelta(hours=1)
+    begin_date = end_date 
+
+   
     
     for flight in flights_data:
         flight ['firstSeen'] = str(datetime.fromtimestamp(flight ['firstSeen']))
