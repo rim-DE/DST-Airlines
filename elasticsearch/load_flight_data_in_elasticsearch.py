@@ -1,12 +1,25 @@
 from elasticsearch import Elasticsearch, helpers, RequestError
-import json
-import sys
+import time
 
-es = Elasticsearch(hosts = "http://172.29.213.152:9200")
+class LoadFlightData :
 
+    def __init__ (self, hosts):
+        self.hosts = hosts
+    
+    def connect (self):
+    
+        while True:
+            es = Elasticsearch(hosts = self.hosts)
+            if es.ping():
+                if (es.cluster.health()['status'] in ['yellow','green']):
+                    break
+            time.sleep(5)
+        return es
 
-mappings = {
-       "properties":{
+    def load(self, es, dict):
+
+        mappings = {
+        "properties":{
          "icao24":{"type":"text"},
          "firstSeen":{"type":"date",
             "format": "yyyy-MM-dd HH:mm:ss"
@@ -23,17 +36,15 @@ mappings = {
          "departureAirportCandidatesCount":{"type":"text"},
          "arrivalAirportCandidatesCount":{"type":"text"}
 
-       }
-      }
+            }
+            }
 
-try:
-    es.indices.create(index='flights', mappings=mappings)
-except RequestError as es1:
-  print('Index already exists')
+        try:
+            es.indices.create(index='flights', mappings=mappings)
+        except RequestError as es1:
+            print('Index already exists')
   
 
-with open('flights_data.json', encoding='utf-8') as f:
-    data = json.load(f)
-    for doc in data['flight']:
-        es.index(index="flights", document=doc)
+        for doc in dict['flight']:
+            es.index(index="flights", document=doc)
         

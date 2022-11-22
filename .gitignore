@@ -1,3 +1,6 @@
 my-env/*
 *.json
 db-data/*
+__pycache__/*
+es-data/*
+docker-compose2.yml
