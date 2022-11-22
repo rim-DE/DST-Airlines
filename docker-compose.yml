@@ -3,20 +3,41 @@ version: "3.0"
 services:
   elasticsearch:
     container_name: es-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
     environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - xpack.security.enabled=false
-      - "discovery.type=single-node"
+    volumes:
+      - es-data:/var/lib/elasticsearch/data
+    privileged: true
     networks:
       - es-net
     ports:
       - 9200:9200
+    
+
+  es_load:
+    container_name: es-load-container
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    volumes:
+      - es-data:/var/lib/elasticsearch/data
+    networks:
+      - es-net
+    depends_on:
+      - elasticsearch
+    build:
+      context: ./elasticsearch
 
   kibana:
     container_name: kb-container
     image: docker.elastic.co/kibana/kibana:8.1.2
     environment:
       - ELASTICSEARCH_HOSTS=http://es-container:9200
+    volumes:
+      - es-data:/var/lib/elasticsearch/data
+    
     networks:
       - es-net
     depends_on:
@@ -24,45 +45,9 @@ services:
     ports:
       - 5601:5601
 
-  mongo:
-    image: mongo
-    container_name: mongo
-    restart: always
-    ports:
-      - "27017:27017"
-    networks:
-      - mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: soukaina
-      MONGO_INITDB_ROOT_PASSWORD: JK3L2JKL
-
-
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
-    ports:
-      - "8081:8081"
-    networks:
-      - mongo
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
-      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
-  
-  mysql:
-    image: mysql
-    container_name: airlines-mysql
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_ROOT_PASSWORD: 123456
-    ports:
-      - "3306:3306"
-    volumes:
-      - "./db-data:/var/lib/mysql"
-      - ".mysql/script/schema.sql:/docker-entrypoint-initdb.d/1.sql"
-
 networks:
   es-net:
     driver: bridge
-  mongo:
+
+volumes:
+  es-data:
