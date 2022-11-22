@@ -1,55 +1,6 @@
 version: "3.0"
 
 services:
-  elasticsearch:
-    container_name: es-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.2
-    environment:
-      - xpack.security.enabled=false
-      - "discovery.type=single-node"
-    networks:
-      - es-net
-    ports:
-      - 9200:9200
-
-  kibana:
-    container_name: kb-container
-    image: docker.elastic.co/kibana/kibana:8.1.2
-    environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
-    networks:
-      - es-net
-    depends_on:
-      - elasticsearch
-    ports:
-      - 5601:5601
-
-  mongo:
-    image: mongo
-    container_name: mongo
-    restart: always
-    ports:
-      - "27017:27017"
-    networks:
-      - mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: soukaina
-      MONGO_INITDB_ROOT_PASSWORD: JK3L2JKL
-
-
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    restart: always
-    ports:
-      - "8081:8081"
-    networks:
-      - mongo
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
-      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
-  
   mysql:
     image: mysql
     container_name: airlines-mysql
@@ -59,10 +10,24 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "./db-data:/var/lib/mysql"
-      - ".mysql/script/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - mysql_data:/var/lib/mysql
+      - ./mysql_folder/script/schema.sql:/docker-entrypoint-initdb.d/1.sql 
+  
+  
+  python-mysql:
+    image: mypython
+    container_name: airlines-app
+    build: 
+      context: ./mysql_folder
+   
+    environment:
+      - DB_URL=mysql
+    depends_on:
+      - mysql
 
-networks:
-  es-net:
-    driver: bridge
-  mongo:
+volumes:
+  mysql_data:
+
+
+
+

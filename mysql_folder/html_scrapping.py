@@ -1,24 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
-
 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bs
-import pandas as pd
 import string
 import json
+import csv
 
-
-# In[35]:
-
-
-#pour générer la liste des lettres de l'alphabet
-list_alphabet = list(string.ascii_lowercase) 
-
-
-# In[36]:
 
 
 def extract_info():
@@ -27,7 +16,9 @@ def extract_info():
     et ensuite par page. 
     sortie: ensemble de données en liste
     '''
-    
+    #pour générer la liste des lettres de l'alphabet
+    #list_alphabet = list(string.ascii_lowercase) 
+    list_alphabet = ["z"]
     #initialisation des listes des données 
     city_all = []
     country_all = []
@@ -108,22 +99,12 @@ def extract_info():
     return ICAO_all, IATA_all, name_all, taille_all, country_all ,city_all
 
 
-# In[38]:
-
-
-ICAO_all, IATA_all, name_all, taille_all, country_all ,city_all = extract_info()
-
-
-# In[48]:
-
-
 def list_to_json(ICAO_all,IATA_all,name_all,country_all,city_all):
     '''
     créé un objet json à partir d'un ensemble de liste
     entrée: 5 listes des info
-    sortie: un objet json les raassemblant
+    sortie: un objet json les raassemblant et une liste des tuples
     '''
-
     list_dictionary_airport = []
 
     for i in range(len(ICAO_all)):
@@ -137,15 +118,28 @@ def list_to_json(ICAO_all,IATA_all,name_all,country_all,city_all):
     
     return airport_json
 
+def list_to_tuples(ICAO_all,IATA_all,name_all,taille_all,country_all,city_all):
+    airport_tuples = list(zip(ICAO_all,IATA_all,name_all,taille_all,country_all,city_all))
+    return airport_tuples
 
-# In[49]:
+def scrap_aeroport_data ():
+    ICAO_all, IATA_all, name_all, taille_all, country_all ,city_all = extract_info()
+    airport_tuples = list_to_tuples(ICAO_all, IATA_all, name_all, taille_all, country_all ,city_all)
+    return airport_tuples
+     
+def csv_to_tuples(csv_file):
+    '''
+    fonction qui importe un fichier csv et le transforme en liste de tuples
+    input: fichier csv
+    output: liste de tuples
+    '''
+    csv_filename = 'aircraftDatabase.csv'
+    with open(csv_filename) as f:
+        reader = csv.reader(f)
+        lst = list(tuple(line) for line in reader)
+        lst=lst[2::]
+    return lst 
 
 
-info_json = list_to_json(ICAO_all,IATA_all,name_all,country_all,city_all)
 
-
-# In[50]:
-
-
-print(info_json)
 

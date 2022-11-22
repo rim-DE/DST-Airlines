@@ -1,11 +1,16 @@
 
 import mysql.connector
 import json
-import mysql.html_scrapping as html_scrapping
+import html_scrapping as html_scrapping
+import os
 
-# fonction de connexion à la base
+# fonction de connexion à la basls e
 def connection():
-  mydb= mysql.connector.connect( host="localhost",user="root",password="123456", database="dstairlines")
+  dbUrl = os.environ['DB_URL']
+  #if(dbUrl == None):
+ #   dbUrl = 'localhost'
+  print("!!!!!!!!!!!!!!!!!!!!!!!!dbUrl: ", dbUrl)
+  mydb= mysql.connector.connect( host=dbUrl,user="root",password="123456", database="dstairlines")
   return mydb
 
 # fonction qui permet d'insérer les données scrappées du html dans la table 
