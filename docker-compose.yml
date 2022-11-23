@@ -10,26 +10,11 @@ services:
       - xpack.security.enabled=false
     volumes:
       - es-data:/usr/share/elasticsearch/data
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    privileged: true
-    networks:
-      - es-net
     ports:
       - 9200:9200
     
-
   es_load:
     container_name: es-load-container
-    environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
-    volumes:
-      - es-data:/usr/share/elasticsearch/data
-    privileged: true
-    networks:
-      - es-net
     depends_on:
       - elasticsearch
     build:
@@ -38,21 +23,10 @@ services:
   kibana:
     container_name: kb-container
     image: docker.elastic.co/kibana/kibana:8.1.2
-    environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
-    volumes:
-      - es-data:/usr/share/elasticsearch/data
-    privileged: true
-    networks:
-      - es-net
     depends_on:
       - elasticsearch
     ports:
       - 5601:5601
-
-networks:
-  es-net:
-    driver: bridge
 
 volumes:
   es-data:
