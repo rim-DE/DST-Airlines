@@ -1,53 +1,72 @@
-version: "3.0"
+version: "3.3"
 
 services:
+  mongo:
+    container_name: my_mongo
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    ports:
+      - '27017:27017'
+    volumes: 
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+    
+  mongo_load:
+    image: mongo-python
+    container_name: mongo-python
+    depends_on:
+      - mongo
+    build:
+      context: ./mongoDB
+
+  mongoexpress:
+    container_name: mongo-express
+    image: mongo-express:0.54
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=my_mongo
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=pass
+    depends_on:
+      - mongo
+    ports:
+      - '8081:8081'
+  
   elasticsearch:
-    container_name: es-container
+    container_name: elastic-search
     image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - xpack.security.enabled=false
     volumes:
-      - es-data:/var/lib/elasticsearch/data
-    privileged: true
-    networks:
-      - es-net
+      - elastic-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     
-
   es_load:
-    container_name: es-load-container
-    environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
-    volumes:
-      - es-data:/var/lib/elasticsearch/data
-    networks:
-      - es-net
+    image: elastic-python
+    container_name: elastic-python
     depends_on:
       - elasticsearch
     build:
       context: ./elasticsearch
 
   kibana:
-    container_name: kb-container
+    container_name: kibana
     image: docker.elastic.co/kibana/kibana:8.1.2
-    environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
-    volumes:
-      - es-data:/var/lib/elasticsearch/data
-    
-    networks:
-      - es-net
     depends_on:
       - elasticsearch
     ports:
       - 5601:5601
 
-networks:
-  es-net:
-    driver: bridge
 
 volumes:
-  es-data:
+  mongo-data:
+  mongo-config:
+  elastic-data:
+    

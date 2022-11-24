@@ -1,10 +1,9 @@
 from extract_flight_data import FlightData
 from load_flight_data_in_elasticsearch import LoadFlightData
-import os
 
 
-hosts = os.environ['ELASTICSEARCH_HOSTS']
-#hosts = "http://localhost:9200"
+#hosts = os.environ['ELASTICSEARCH_HOSTS']
+hosts = "http://elastic-search:9200"
 
 #Etraction des vols
 user_name='rim-DE'

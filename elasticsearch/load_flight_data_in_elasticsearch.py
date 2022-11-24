@@ -42,9 +42,10 @@ class LoadFlightData :
         try:
             es.indices.create(index='flights', mappings=mappings)
         except RequestError as es1:
-            print('Index already exists')
+            print("L'index flights  existe déjà")
   
-
+        print ("debut de chargement des données dans elasticsearch") 
         for doc in dict['flight']:
             es.index(index="flights", document=doc)
+        print ("fin de chargement des données dans elasticsearch")
         

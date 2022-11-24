@@ -1,55 +1,46 @@
 import pprint
-
+import pandas as pd
 import requests
+import json
 
+#L'extraction des positions des avions doit se faire toute les 45 secondes
+class PositionAircraftData:
+    
+    def __init__ (self, user_name, password):
+        
+        self.user_name = user_name
+        self.password = password
 
-class OpenSkyClient:
-    """
-        A helper class to get flights data from open-sky api.
-    """
-    ROOT_URL = 'https://opensky-network.org/api/'
-    TRACK_FLIGHT_URI = 'tracks/all'
-    FIND_ALL = 'flights/all'
+    def extractPositionAircrafttData (self):
 
-    def track_flight(self, flight_icao24):
         """
-            tracks a flight with the icao24 code.
-
-        Args:
-            flight_icao24: the icao24 code
-
-        Returns:
-            flight_data: returns the flight data or empty dictionary in case of http error.
+            retourne les positions de tous les avions 
+            en temps réel
         """
-        query_params = {
-            "icao24": flight_icao24
-        }
+        OpenSky_url = 'https://'+self.user_name+':'+self.password+'@opensky-network.org/api/states/all'
+        positions_data = requests.get (OpenSky_url)
 
-        response = requests.get(self.ROOT_URL + self.TRACK_FLIGHT_URI, params=query_params)
-        if response.status_code != 200:
-            pprint.pp(response)
+        if positions_data.status_code != 200:
+            pprint.pp(positions_data)
             return {}
+        
+        try:
+            columns = ['icao24','callsign','origin_country','time_position','last_contact','long','lat','baro_altitude','on_ground (T/F)','velocity','true_track','vertical_rate','sensors',
+            'geo_altitude','squawk','spi','position_source','category']
+            flight_df=pd.DataFrame(positions_data.json()['states'],columns=columns)
+        except ValueError:
+            columns = ['icao24','callsign','origin_country','time_position','last_contact','long','lat','baro_altitude','on_ground (T/F)','velocity','true_track','vertical_rate','sensors',
+            'geo_altitude','squawk','spi','position_source']
+            flight_df=pd.DataFrame(positions_data.json()['states'],columns=columns)
 
-        return response.json()
+            #flight_df ['time_position'] = flight_df ['time_position'].apply (lambda tp : str(datetime.fromtimestamp(tp)))
+            #flight_df ['last_contact'] = flight_df ['last_contact'].apply (lambda tp : str(datetime.fromtimestamp(tp)))
+            
+            dict_positions = flight_df.to_dict('records')
 
-    def all_flights(self, begin, end):
-        """
-            gets all flights information (no tracking data).
+            #with open ('test.json', 'w') as f:
+                #json.dump(dict_positions, f)
+        
+        return dict_positions
 
-        Args:
-            begin: the start date in Unix epoch time (timestamp)
-            end: the end date in Unix epoch time (timestamp)
-
-        Returns:
-            flights_information: a list of flights information.
-        """
-        params = {
-            "begin": begin,
-            "end": end
-        }
-        response = requests.get(self.ROOT_URL + self.FIND_ALL, params=params)
-        if response.status_code != 200:
-            pprint.pp(response)
-            return {}
-
-        return response.json()
+    
