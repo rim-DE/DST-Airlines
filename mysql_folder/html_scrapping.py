@@ -17,8 +17,8 @@ def extract_info():
     sortie: ensemble de données en liste
     '''
     #pour générer la liste des lettres de l'alphabet
-    #list_alphabet = list(string.ascii_lowercase) 
-    list_alphabet = ["z"]
+    ##list_alphabet = list(string.ascii_lowercase) 
+    list_alphabet = ['z']
     #initialisation des listes des données 
     city_all = []
     country_all = []
@@ -33,7 +33,7 @@ def extract_info():
         page_1 = urlopen(url_airport_1)
         soup_1 = bs(page_1, "html.parser")
         airport_all = soup_1.findAll('a')
-        #extarction des infos de la pages 1. Nous avons besoin de connaitre le nombe de pages par lettre
+        #extarction des infos de la pages 1. Nous avons besoin de connaitre le nombre de pages par lettre
         #ex: les aéroports commençant par A sont sur 6 pages / les aéroports commençant par G sont sur 4 pages / etc...
         info_page_1 = [] 
         for j in range(len(airport_all)):
@@ -127,14 +127,25 @@ def scrap_aeroport_data ():
     airport_tuples = list_to_tuples(ICAO_all, IATA_all, name_all, taille_all, country_all ,city_all)
     return airport_tuples
      
+def tuples_to_csv():
+    # get aireport information sous forme de list de tuples
+    data = scrap_aeroport_data ()
+    # sauvegarder les tuples dans un fichier csv
+    with open('airport_csv.csv','wb') as out:
+        csv_out=csv.writer(out)
+        csv_out.writerow(['ICAO','IATA', 'NOM', 'TAILLE', 'PAYS', 'CITE'])
+        csv_out.writerows(data)
+
+# appel de la fonction tuples_to_csv
+#tuples_to_csv()
+
 def csv_to_tuples(csv_file):
     '''
     fonction qui importe un fichier csv et le transforme en liste de tuples
     input: fichier csv
     output: liste de tuples
     '''
-    csv_filename = 'aircraftDatabase.csv'
-    with open(csv_filename) as f:
+    with open(csv_file) as f:
         reader = csv.reader(f)
         lst = list(tuple(line) for line in reader)
         lst=lst[2::]
