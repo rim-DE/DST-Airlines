@@ -41,17 +41,21 @@ class FlightData:
             timestamp_begin_date = int(datetime.timestamp(begin_date))
             timestamp_end_date = int(datetime.timestamp(end_date))
             OpenSky_url = 'https://'+self.user_name+':'+self.password+'@opensky-network.org/api/flights/all?begin='+str(timestamp_begin_date)+'&end='+str(timestamp_end_date)
-            flights_data = requests.get(OpenSky_url).json()
+            flights_data = requests.get(OpenSky_url)
             #Traansformer les timestamps en dates
             #begin_date = end_date + timedelta(hours=1)
             begin_date = end_date 
 
+
+            if flights_data.status_code != 200:
+                pprint.pp(positions_data)
+                return {}
    
-    
-            for flight in flights_data:
+            json_data = flights_data.json()
+            for flight in json_data:
                 flight ['firstSeen'] = str(datetime.fromtimestamp(flight ['firstSeen']))
                 flight ['lastSeen'] = str(datetime.fromtimestamp(flight ['lastSeen']))
-            dict_flights['flight'].extend(flights_data)
+            dict_flights['flight'].extend(json_data)
     
         #exporter l'ensemble des données extraites dans un fichier json
         #with open ('flights_data.json', 'w') as f:

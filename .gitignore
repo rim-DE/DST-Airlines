@@ -2,6 +2,9 @@ my-env/*
 *.json
 db-data/*
 __pycache__/*
+elasticsearch/__pycache__/*
+mongoDB/__pycache__/*
 es-data/*
 docker-compose2.yml
 .mysql/*
+data/*
