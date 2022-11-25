@@ -6,7 +6,7 @@ La branche contient 3 répertoires. Chaque répertoire contient :
       - un docker file: pour créer une image python. Elle permet d'installer les requirements et builder les scripts 
 
 
-**Les répertoires sont 
+***Les répertoires sont:*** 
 
 a/ doc: fichier de documentation concernant l'architecture de stockage adoptée
 
@@ -32,14 +32,14 @@ e/ Docker-compose.yml : gère et regroupe toute les images des services. Les ima
   Le volume dans docker-compose est dynamique et géré entièrement par docker. C'est pour quoi on a définit le service  "volumes".
 
 
-**Commandes utiles:
+***Commandes utiles:***
 
 - Pour lancer docker-compose.yml:
 $ sudo docker compose up
 - pour sélectionner le service à lancer à partir de docker compose:
 $ sudo docker compose up <nom_service>
                  
-**Pour lancer les images:
+***Pour lancer les images:***
 
 - Exécuter la commande: $ sudo docker compose up 
 - Pour lancer mongoDB: http://127.0.0.1:8081/ 
