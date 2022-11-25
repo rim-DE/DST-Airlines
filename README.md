@@ -1,4 +1,4 @@
-***Revue sur le contenu
+***Revue sur le contenu*** 
 
 La branche contient 3 répertoires. Chaque répertoire contient : 
       - Les scripts python permettant la création et le chargement de la base.
