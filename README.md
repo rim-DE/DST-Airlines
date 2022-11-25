@@ -1,23 +1,25 @@
 ***Revue sur le contenu*** 
 
-La branche contient 3 répertoires. Chaque répertoire contient : 
-      - Les scripts python permettant la création et le chargement de la base.
-      - "requirements.txt": contenant les dépendances nécessaires pour exécuter  les scripts
-      - un docker file: pour créer une image python. Elle permet d'installer les requirements et builder les scripts 
+La branche contient 3 répertoires. Chaque répertoire contient :
+
+- Les scripts python permettant la création et le chargement de la base.
+- "requirements.txt": contenant les dépendances nécessaires pour exécuter  les scripts
+- un docker file: pour créer une image python. Elle permet d'installer les requirements et builder les scripts 
 
 
 ***Les répertoires sont:*** 
 
-a/ doc: fichier de documentation concernant l'architecture de stockage adoptée
+a. doc: fichier de documentation concernant l'architecture de stockage adoptée
 
-b/ Elasticsearch: Pour créer et charger la base de données ElasticSearch à partir de scrapping api OpenSky
+b. Elasticsearch: Pour créer et charger la base de données ElasticSearch à partir de scrapping api OpenSky
 
-c/ MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
+c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
 
-d/ Mysq_folder : Créer et charger la base de données Mysql. C dossier contient les scripts du scrapping HTML des données des aéroports.
-                 Les données sont extrtaites de ce site: https://www.world-airport-codes.com/alphabetical/airport-code/a.html?page=1
+d. Mysq_folder : 
+      * Créer et charger la base de données Mysql. C dossier contient les scripts du scrapping HTML des données des aéroports.
+      * Les données sont extrtaites de ce site: https://www.world-airport-codes.com/alphabetical/airport-code/a.html?page=1
                  
-e/ Docker-compose.yml : gère et regroupe toute les images des services. Les images sont:
+e. Docker-compose.yml : gère et regroupe toute les images des services. Les images sont:
     -1- mongo: image de la base de données mongoDB
     -2- mongo_load: image python qui charge mongoDB
     -3- mongoexpress: image .....
