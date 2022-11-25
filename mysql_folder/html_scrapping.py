@@ -17,8 +17,7 @@ def extract_info():
     sortie: ensemble de données en liste
     '''
     #pour générer la liste des lettres de l'alphabet
-    ##list_alphabet = list(string.ascii_lowercase) 
-    list_alphabet = ['z']
+    list_alphabet = list(string.ascii_lowercase) 
     #initialisation des listes des données 
     city_all = []
     country_all = []
@@ -131,25 +130,16 @@ def tuples_to_csv():
     # get aireport information sous forme de list de tuples
     data = scrap_aeroport_data ()
     # sauvegarder les tuples dans un fichier csv
-    with open('airport_csv.csv','wb') as out:
+    with open('airport_csv.csv','w') as out:
         csv_out=csv.writer(out)
         csv_out.writerow(['ICAO','IATA', 'NOM', 'TAILLE', 'PAYS', 'CITE'])
-        csv_out.writerows(data)
+        for mytuple in data:
+            csv_out.writerow(mytuple)
 
 # appel de la fonction tuples_to_csv
-#tuples_to_csv()
+tuples_to_csv()
 
-def csv_to_tuples(csv_file):
-    '''
-    fonction qui importe un fichier csv et le transforme en liste de tuples
-    input: fichier csv
-    output: liste de tuples
-    '''
-    with open(csv_file) as f:
-        reader = csv.reader(f)
-        lst = list(tuple(line) for line in reader)
-        lst=lst[2::]
-    return lst 
+
 
 
 
