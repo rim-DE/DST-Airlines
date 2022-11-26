@@ -75,5 +75,4 @@ def insert_compagnies (compagnies_tuples):
     print("connection MySQL est fermé")
 
 compagnies_tuples = csv_to_tuples("clean_aircraft.csv")
-print(compagnies_tuples[0:10])
 insert_compagnies(compagnies_tuples)

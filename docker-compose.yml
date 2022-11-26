@@ -19,15 +19,13 @@ services:
     container_name: airlines-app
     build: 
       context: ./mysql_folder
-   
     environment:
       - DB_URL=airlines-mysql
     depends_on:
       - mysql
-
 volumes:
   mysql_data:
 
 
-
+ 
 
