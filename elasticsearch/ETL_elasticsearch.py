@@ -9,7 +9,7 @@ hosts = "http://elastic-search:9200"
 user_name='rim-DE'
 password='bde_airlines'
 e = FlightData (user_name, password)
-dict_flights=e.extractFliaghtData ()
+dict_flights=e.extractFlightData ()
 
 l=LoadFlightData (hosts)
 #connect to elasticsearch

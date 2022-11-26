@@ -21,7 +21,7 @@ class FlightData:
         self.user_name = user_name
         self.password = password
 
-    def extractFliaghtData (self):
+    def extractFlightData (self):
         # on définit la date de début
         begin_date = datetime.strptime(datetime.strftime(datetime.now() - timedelta(2), '%Y-%m-%d'), '%Y-%m-%d')
         begin_date += timedelta(hours=20, minutes=00) 
@@ -47,9 +47,9 @@ class FlightData:
             begin_date = end_date 
 
 
-            if flights_data.status_code != 200:
-                pprint.pp(positions_data)
-                return {}
+            #if flights_data.status_code != 200:
+                #pprint.pp(positions_data)
+                #return {}
    
             json_data = flights_data.json()
             for flight in json_data:
