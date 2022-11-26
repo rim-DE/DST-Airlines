@@ -1,8 +1,9 @@
-CREATE DATABASE `dstairlines` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
+CREATE DATABASE IF NOT EXISTS `dstairlines` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE dstairlines;
 -- dstairlines.aeroports definition
 
-CREATE TABLE `aeroports` (
+CREATE TABLE IF NOT EXISTS `dstairlines`.`aeroports` (
   `iCAO` varchar(100) DEFAULT NULL,
   `IATA` varchar(100) NOT NULL,
   `nom` varchar(100) DEFAULT NULL,
@@ -15,7 +16,7 @@ CREATE TABLE `aeroports` (
 
 -- dstairlines.compagnies definition
 
-CREATE TABLE `compagnies` (
+CREATE TABLE IF NOT EXISTS `compagnies` (
   `icao24` varchar(100) NOT NULL,
   `registration` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `manufacturericao` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
