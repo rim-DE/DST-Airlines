@@ -15,6 +15,7 @@ services:
   
   
   python-mysql:
+    restart: always
     image: mypython
     container_name: airlines-app
     build: 
