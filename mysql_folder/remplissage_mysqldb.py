@@ -25,8 +25,15 @@ def connection():
   #if(dbUrl == None):
   #  dbUrl = 'localhost'
   print("!!!!!!!!!!!!!!!!!!!!!!!!dbUrl: ", dbUrl)
-  mydb= mysql.connector.connect( host=dbUrl, user="root",password="123456", database="dstairlines")
+  while True:
+    
+    mydb= mysql.connector.connect( host=dbUrl, user="root",password="123456", database="dstairlines")
+    if (mydb.is_connected()):
+      break
+    time.sleep(5)
   return mydb
+
+  
 
 # fonction qui permet d'insérer les données scrappées du html dans la table 
 def insert_aeroport (list_of_tuples):
