@@ -3,3 +3,11 @@ my-env/*
 datadb/*
 data-db2/*
 data-db/*
+db-data/*
+__pycache__/*
+elasticsearch/__pycache__/*
+mongoDB/__pycache__/*
+es-data/*
+docker-compose2.yml
+data/*
+
