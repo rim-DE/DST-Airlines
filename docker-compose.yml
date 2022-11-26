@@ -81,6 +81,7 @@ services:
   
   python-mysql:
     image: mypython
+    restart: always
     container_name: airlines-app
     build: 
       context: ./mysql_folder
