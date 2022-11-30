@@ -17,6 +17,7 @@ services:
   mongo_load:
     image: mongo-python
     container_name: mongo-python
+    restart: "on-failure:10"
     depends_on:
       - mongo
     build:
@@ -52,6 +53,7 @@ services:
   es_load:
     image: elastic-python
     container_name: elastic-python
+    restart: "on-failure:10"
     depends_on:
       - elasticsearch
     build:
@@ -82,6 +84,7 @@ services:
   python-mysql:
     image: mypython
     container_name: airlines-app
+    restart: "on-failure:10"
     build: 
       context: ./mysql_folder
     environment:
