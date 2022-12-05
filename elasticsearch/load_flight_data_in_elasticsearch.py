@@ -24,11 +24,10 @@ class LoadFlightData :
       mappings = {
       "properties" : {
         "arrivalAirportCandidatesCount" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
@@ -36,17 +35,15 @@ class LoadFlightData :
           "type" : "text",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "departureAirportCandidatesCount" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
@@ -54,26 +51,23 @@ class LoadFlightData :
           "type" : "text",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "estArrivalAirportHorizDistance" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "estArrivalAirportVertDistance" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
@@ -81,26 +75,23 @@ class LoadFlightData :
           "type" : "text",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "estDepartureAirportHorizDistance" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "estDepartureAirportVertDistance" : {
-          "type" : "text",
+          "type" : "integer",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
@@ -112,17 +103,16 @@ class LoadFlightData :
           "type" : "text",
           "fields" : {
             "keyword" : {
-              "type" : "keyword",
-              "ignore_above" : 256
+              "type" : "keyword"
             }
           }
         },
         "lastSeen" : {
           "type" : "date",
           "format" : "yyyy-MM-dd HH:mm:ss"
-          }
-          }
         }
+        }
+      }
 
       try:
           es.indices.create(index='flights', mappings=mappings)

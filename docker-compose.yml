@@ -20,6 +20,7 @@ services:
     restart: "on-failure:10"
     depends_on:
       - mongo
+      - mongoexpress
     build:
       context: ./mongoDB
 

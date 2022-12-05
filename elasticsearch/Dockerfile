@@ -10,7 +10,7 @@ COPY requirements.txt ./
 #installer le contenu du requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-#copier le contenu du dossier courant (les autres scripts python)   dans le conatainer
+#copier le contenu du dossier courant (les autres scripts python) dans le conatainer
 COPY . .
 
 #Définir la commande à exécuter (le point d'entrée) au lancement du container

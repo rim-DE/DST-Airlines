@@ -1,11 +1,12 @@
 from extract_aircraft_position_data import PositionAircraftData
 from load_aircraft_position_data_in_mongodb import LoadPositionAircraftData
 import os 
+import pprint
 
 #user = os.environ['MONGO_INITDB_ROOT_USERNAME']
 #password = os.environ['MONGO_INITDB_ROOT_PASSWORD']
 
-
+#host = "localhost"
 host = "my_mongo"
 port = 27017
 user = 'admin'
