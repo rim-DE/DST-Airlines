@@ -22,7 +22,7 @@ class FlightData:
         self.user_name = user_name
         self.password = password
 
-    def extractFlightData (self):
+    def extractFlightData (self, fileName):
         # on définit la date de début
         begin_date = datetime.strptime(datetime.strftime(datetime.now() - timedelta(2), '%Y-%m-%d'), '%Y-%m-%d')
         begin_date += timedelta(hours=20, minutes=00) 
@@ -56,8 +56,8 @@ class FlightData:
             
             
         #exporter l'ensemble des données extraites dans un fichier json
-        #with open ('flights_data.json', 'w') as f:
-           #json.dump(dict_flights, f)
+        with open (fileName, 'w') as f:
+           json.dump(json_data, f)
         
         
-        return json_data
+        

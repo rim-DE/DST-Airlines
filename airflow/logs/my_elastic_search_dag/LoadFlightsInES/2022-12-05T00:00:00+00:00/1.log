@@ -242,3 +242,169 @@ Traceback (most recent call last):
 TypeError: pop() takes at most 1 argument (2 given)
 [2022-12-06 10:20:48,963] {taskinstance.py:1551} INFO - Marking task as FAILED. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T102048, end_date=20221206T102048
 [2022-12-06 10:20:49,006] {local_task_job.py:151} INFO - Task exited with return code 1
+[2022-12-06 15:39:12,727] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 15:39:12,744] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 15:39:12,744] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 15:39:12,744] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 15:39:12,745] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 15:39:12,763] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 15:39:12,768] {standard_task_runner.py:52} INFO - Started process 228 to run task
+[2022-12-06 15:39:12,774] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', '2022-12-05T00:00:00+00:00', '--job-id', '7', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp8qoy74qr', '--error-file', '/tmp/tmphdyyhj54']
+[2022-12-06 15:39:12,775] {standard_task_runner.py:77} INFO - Job 7: Subtask LoadFlightsInES
+[2022-12-06 15:39:12,836] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [running]> on host a73eb81819c0
+[2022-12-06 15:39:12,904] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 15:39:13,097] {base.py:122} INFO - PUT http://elastic-search:9200/flights [status:200 request:0.162s]
+[2022-12-06 15:39:13,097] {logging_mixin.py:104} INFO - debut de chargement des données dans elasticsearch
+[2022-12-06 15:39:13,579] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.445s]
+[2022-12-06 15:39:13,789] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.182s]
+[2022-12-06 15:39:13,960] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.147s]
+[2022-12-06 15:39:14,157] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.169s]
+[2022-12-06 15:39:14,340] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.157s]
+[2022-12-06 15:39:14,564] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.182s]
+[2022-12-06 15:39:14,834] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.224s]
+[2022-12-06 15:39:14,986] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.127s]
+[2022-12-06 15:39:15,110] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.102s]
+[2022-12-06 15:39:15,113] {logging_mixin.py:104} INFO - fin de chargement des données dans elasticsearch
+[2022-12-06 15:39:15,116] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 15:39:15,134] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T153912, end_date=20221206T153915
+[2022-12-06 15:39:15,175] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 15:39:15,204] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 21:19:33,218] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:19:33,229] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:19:33,230] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:19:33,230] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 21:19:33,230] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:19:33,245] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 21:19:33,248] {standard_task_runner.py:52} INFO - Started process 360 to run task
+[2022-12-06 21:19:33,251] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', '2022-12-05T00:00:00+00:00', '--job-id', '23', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpcoxvpyu5', '--error-file', '/tmp/tmpp600xpoc']
+[2022-12-06 21:19:33,252] {standard_task_runner.py:77} INFO - Job 23: Subtask LoadFlightsInES
+[2022-12-06 21:19:33,291] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [running]> on host 38e99ed76088
+[2022-12-06 21:19:33,342] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 21:19:33,362] {logging_mixin.py:104} INFO - debut de chargement des données dans elasticsearch
+[2022-12-06 21:19:33,717] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.340s]
+[2022-12-06 21:19:33,975] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.236s]
+[2022-12-06 21:19:34,133] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.139s]
+[2022-12-06 21:19:34,282] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.126s]
+[2022-12-06 21:19:34,392] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.088s]
+[2022-12-06 21:19:34,572] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.163s]
+[2022-12-06 21:19:34,718] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.115s]
+[2022-12-06 21:19:34,848] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.107s]
+[2022-12-06 21:19:34,942] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.078s]
+[2022-12-06 21:19:34,945] {logging_mixin.py:104} INFO - fin de chargement des données dans elasticsearch
+[2022-12-06 21:19:34,947] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 21:19:34,960] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T211933, end_date=20221206T211934
+[2022-12-06 21:19:34,988] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 21:19:35,003] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:05:15,710] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:05:15,731] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:05:15,731] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:05:15,731] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 22:05:15,731] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:05:15,742] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:05:15,748] {standard_task_runner.py:52} INFO - Started process 284 to run task
+[2022-12-06 22:05:15,753] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', '2022-12-05T00:00:00+00:00', '--job-id', '11', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp1absd9ot', '--error-file', '/tmp/tmpm1fum193']
+[2022-12-06 22:05:15,754] {standard_task_runner.py:77} INFO - Job 11: Subtask LoadFlightsInES
+[2022-12-06 22:05:15,811] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [running]> on host 7fa6b411e012
+[2022-12-06 22:05:15,889] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:05:15,939] {logging_mixin.py:104} INFO - debut de chargement des données dans elasticsearch
+[2022-12-06 22:05:16,408] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.442s]
+[2022-12-06 22:05:16,653] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.206s]
+[2022-12-06 22:05:16,858] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.179s]
+[2022-12-06 22:05:17,085] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.202s]
+[2022-12-06 22:05:17,376] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.260s]
+[2022-12-06 22:05:17,728] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.326s]
+[2022-12-06 22:05:18,199] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.442s]
+[2022-12-06 22:05:18,363] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.142s]
+[2022-12-06 22:05:18,480] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.092s]
+[2022-12-06 22:05:18,484] {logging_mixin.py:104} INFO - fin de chargement des données dans elasticsearch
+[2022-12-06 22:05:18,488] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:05:18,505] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T220515, end_date=20221206T220518
+[2022-12-06 22:05:18,548] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:05:18,561] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:30:14,640] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:30:14,654] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:30:14,654] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:30:14,654] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 22:30:14,654] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:30:14,661] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:30:14,664] {standard_task_runner.py:52} INFO - Started process 734 to run task
+[2022-12-06 22:30:14,668] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', '2022-12-05T00:00:00+00:00', '--job-id', '32', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmptvky_i86', '--error-file', '/tmp/tmp0jha_2pm']
+[2022-12-06 22:30:14,668] {standard_task_runner.py:77} INFO - Job 32: Subtask LoadFlightsInES
+[2022-12-06 22:30:14,705] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [running]> on host fa2e38feb0e6
+[2022-12-06 22:30:14,747] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:30:14,765] {logging_mixin.py:104} INFO - debut de chargement des données dans elasticsearch
+[2022-12-06 22:30:14,911] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.133s]
+[2022-12-06 22:30:15,026] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.098s]
+[2022-12-06 22:30:15,127] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.081s]
+[2022-12-06 22:30:15,203] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.063s]
+[2022-12-06 22:30:15,286] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.070s]
+[2022-12-06 22:30:15,366] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.065s]
+[2022-12-06 22:30:15,444] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.064s]
+[2022-12-06 22:30:15,523] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.065s]
+[2022-12-06 22:30:15,586] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.050s]
+[2022-12-06 22:30:15,588] {logging_mixin.py:104} INFO - fin de chargement des données dans elasticsearch
+[2022-12-06 22:30:15,590] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:30:15,601] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T223014, end_date=20221206T223015
+[2022-12-06 22:30:15,630] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:30:15,644] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:37:55,663] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:37:55,673] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:37:55,673] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:37:55,673] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 22:37:55,673] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:37:55,685] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:37:55,688] {standard_task_runner.py:52} INFO - Started process 363 to run task
+[2022-12-06 22:37:55,692] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', '2022-12-05T00:00:00+00:00', '--job-id', '18', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpvwv2xoar', '--error-file', '/tmp/tmp8h31zavh']
+[2022-12-06 22:37:55,692] {standard_task_runner.py:77} INFO - Job 18: Subtask LoadFlightsInES
+[2022-12-06 22:37:55,733] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES 2022-12-05T00:00:00+00:00 [running]> on host 294ee582fed7
+[2022-12-06 22:37:55,775] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:37:55,793] {logging_mixin.py:104} INFO - debut de chargement des données dans elasticsearch
+[2022-12-06 22:37:56,049] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.243s]
+[2022-12-06 22:37:56,187] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.119s]
+[2022-12-06 22:37:56,325] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.115s]
+[2022-12-06 22:37:56,511] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.165s]
+[2022-12-06 22:37:56,638] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.107s]
+[2022-12-06 22:37:56,755] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.096s]
+[2022-12-06 22:37:56,865] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.092s]
+[2022-12-06 22:37:56,957] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.073s]
+[2022-12-06 22:37:57,042] {base.py:122} INFO - POST http://elastic-search:9200/flights/_bulk [status:200 request:0.070s]
+[2022-12-06 22:37:57,045] {logging_mixin.py:104} INFO - fin de chargement des données dans elasticsearch
+[2022-12-06 22:37:57,048] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:37:57,063] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T223755, end_date=20221206T223757
+[2022-12-06 22:37:57,105] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:37:57,152] {local_task_job.py:151} INFO - Task exited with return code 0

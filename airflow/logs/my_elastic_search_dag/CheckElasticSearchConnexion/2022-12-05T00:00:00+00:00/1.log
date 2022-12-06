@@ -214,3 +214,317 @@ Traceback (most recent call last):
 Exception: This task randomly failed
 [2022-12-06 10:20:07,099] {taskinstance.py:1551} INFO - Marking task as UP_FOR_RETRY. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T102006, end_date=20221206T102007
 [2022-12-06 10:20:07,156] {local_task_job.py:151} INFO - Task exited with return code 1
+[2022-12-06 15:39:01,827] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 15:39:01,842] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 15:39:01,842] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 15:39:01,842] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 15:39:01,842] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 15:39:01,859] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 15:39:01,870] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '2', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmptj2bl6lr', '--error-file', '/tmp/tmpt8x5d9rx']
+[2022-12-06 15:39:01,864] {standard_task_runner.py:52} INFO - Started process 201 to run task
+[2022-12-06 15:39:01,871] {standard_task_runner.py:77} INFO - Job 2: Subtask CheckElasticSearchConnexion
+[2022-12-06 15:39:01,957] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host a73eb81819c0
+[2022-12-06 15:39:02,027] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 15:39:02,029] {logging_mixin.py:104} INFO - 9
+[2022-12-06 15:39:02,029] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 15:39:02,044] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T153901, end_date=20221206T153902
+[2022-12-06 15:39:02,085] {taskinstance.py:1265} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 15:39:02,108] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 21:18:04,482] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:18:04,499] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:18:04,499] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:18:04,499] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 21:18:04,499] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:18:04,507] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 21:18:04,511] {standard_task_runner.py:52} INFO - Started process 215 to run task
+[2022-12-06 21:18:04,514] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '6', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpu3akvro5', '--error-file', '/tmp/tmpvslqhbbb']
+[2022-12-06 21:18:04,515] {standard_task_runner.py:77} INFO - Job 6: Subtask CheckElasticSearchConnexion
+[2022-12-06 21:18:04,556] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host 38e99ed76088
+[2022-12-06 21:18:04,689] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 21:18:15,046] {base.py:150} WARNING - HEAD http://elastic-search:9200/ [status:N/A request:10.351s]
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/elasticsearch/connection/http_urllib3.py", line 242, in perform_request
+    method, url, body, retries=Retry(False), headers=request_headers, **kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 386, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.6/http/client.py", line 1291, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1337, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1286, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1046, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.6/http/client.py", line 984, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 172, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f61a0935d30>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+[2022-12-06 21:18:25,056] {base.py:150} WARNING - HEAD http://elastic-search:9200/ [status:N/A request:10.005s]
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/elasticsearch/connection/http_urllib3.py", line 242, in perform_request
+    method, url, body, retries=Retry(False), headers=request_headers, **kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 386, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.6/http/client.py", line 1291, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1337, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1286, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1046, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.6/http/client.py", line 984, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 172, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f61a0935da0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+[2022-12-06 21:18:35,064] {base.py:150} WARNING - HEAD http://elastic-search:9200/ [status:N/A request:10.008s]
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/elasticsearch/connection/http_urllib3.py", line 242, in perform_request
+    method, url, body, retries=Retry(False), headers=request_headers, **kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 386, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.6/http/client.py", line 1291, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1337, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1286, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1046, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.6/http/client.py", line 984, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 172, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f61a0935ef0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+[2022-12-06 21:18:45,071] {base.py:150} WARNING - HEAD http://elastic-search:9200/ [status:N/A request:10.006s]
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/elasticsearch/connection/http_urllib3.py", line 242, in perform_request
+    method, url, body, retries=Retry(False), headers=request_headers, **kw
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 386, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/local/lib/python3.6/http/client.py", line 1291, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1337, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1286, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.6/http/client.py", line 1046, in _send_output
+    self.send(msg)
+  File "/usr/local/lib/python3.6/http/client.py", line 984, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.6/site-packages/urllib3/connection.py", line 172, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f61a08a90f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+[2022-12-06 21:18:45,071] {taskinstance.py:1501} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1157, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1331, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1361, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/my_elastic_search_dag.py", line 38, in check_connexion
+    raise Exception('Connexion elasticSearch non disponible')
+Exception: Connexion elasticSearch non disponible
+[2022-12-06 21:18:45,074] {taskinstance.py:1551} INFO - Marking task as UP_FOR_RETRY. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T211804, end_date=20221206T211845
+[2022-12-06 21:18:45,272] {local_task_job.py:151} INFO - Task exited with return code 1
+[2022-12-06 21:50:25,312] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:50:25,329] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 21:50:25,329] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:50:25,329] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 21:50:25,329] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 21:50:25,348] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 21:50:25,353] {standard_task_runner.py:52} INFO - Started process 220 to run task
+[2022-12-06 21:50:25,359] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '3', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp205cyi2f', '--error-file', '/tmp/tmpxyppzgxj']
+[2022-12-06 21:50:25,360] {standard_task_runner.py:77} INFO - Job 3: Subtask CheckElasticSearchConnexion
+[2022-12-06 21:50:25,418] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host f6470d6d4cfc
+[2022-12-06 21:50:25,486] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 21:50:25,496] {base.py:122} INFO - HEAD http://elastic-search:9200/ [status:200 request:0.006s]
+[2022-12-06 21:50:25,499] {base.py:122} INFO - GET http://elastic-search:9200/_cluster/health [status:200 request:0.003s]
+[2022-12-06 21:50:25,500] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 21:50:25,514] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T215025, end_date=20221206T215025
+[2022-12-06 21:50:25,550] {taskinstance.py:1265} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 21:50:25,574] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:05:05,228] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:05:05,245] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:05:05,245] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:05:05,245] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 22:05:05,245] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:05:05,253] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:05:05,256] {standard_task_runner.py:52} INFO - Started process 262 to run task
+[2022-12-06 22:05:05,260] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '5', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpovkrpk9m', '--error-file', '/tmp/tmp2vbby7jw']
+[2022-12-06 22:05:05,260] {standard_task_runner.py:77} INFO - Job 5: Subtask CheckElasticSearchConnexion
+[2022-12-06 22:05:05,302] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host 7fa6b411e012
+[2022-12-06 22:05:05,352] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:05:05,359] {base.py:122} INFO - HEAD http://elastic-search:9200/ [status:200 request:0.005s]
+[2022-12-06 22:05:05,361] {base.py:122} INFO - GET http://elastic-search:9200/_cluster/health [status:200 request:0.002s]
+[2022-12-06 22:05:05,362] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:05:05,373] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T220505, end_date=20221206T220505
+[2022-12-06 22:05:05,405] {taskinstance.py:1265} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:05:05,434] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:30:04,840] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:30:04,854] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:30:04,854] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:30:04,854] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 22:30:04,854] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:30:04,862] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:30:04,869] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '26', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp27lmlkq_', '--error-file', '/tmp/tmpra12kps8']
+[2022-12-06 22:30:04,866] {standard_task_runner.py:52} INFO - Started process 705 to run task
+[2022-12-06 22:30:04,870] {standard_task_runner.py:77} INFO - Job 26: Subtask CheckElasticSearchConnexion
+[2022-12-06 22:30:04,907] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host fa2e38feb0e6
+[2022-12-06 22:30:04,952] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:30:04,957] {base.py:122} INFO - HEAD http://elastic-search:9200/ [status:200 request:0.003s]
+[2022-12-06 22:30:04,959] {base.py:122} INFO - GET http://elastic-search:9200/_cluster/health [status:200 request:0.002s]
+[2022-12-06 22:30:04,959] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:30:04,969] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T223004, end_date=20221206T223004
+[2022-12-06 22:30:04,996] {taskinstance.py:1265} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:30:05,004] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 22:37:46,442] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:37:46,452] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 22:37:46,452] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:37:46,452] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 22:37:46,452] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 22:37:46,463] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckElasticSearchConnexion> on 2022-12-05T00:00:00+00:00
+[2022-12-06 22:37:46,466] {standard_task_runner.py:52} INFO - Started process 341 to run task
+[2022-12-06 22:37:46,470] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'CheckElasticSearchConnexion', '2022-12-05T00:00:00+00:00', '--job-id', '12', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpg7td_onx', '--error-file', '/tmp/tmpavc2xjmo']
+[2022-12-06 22:37:46,470] {standard_task_runner.py:77} INFO - Job 12: Subtask CheckElasticSearchConnexion
+[2022-12-06 22:37:46,507] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.CheckElasticSearchConnexion 2022-12-05T00:00:00+00:00 [running]> on host 294ee582fed7
+[2022-12-06 22:37:46,549] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=CheckElasticSearchConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 22:37:46,555] {base.py:122} INFO - HEAD http://elastic-search:9200/ [status:200 request:0.004s]
+[2022-12-06 22:37:46,558] {base.py:122} INFO - GET http://elastic-search:9200/_cluster/health [status:200 request:0.002s]
+[2022-12-06 22:37:46,558] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 22:37:46,568] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=CheckElasticSearchConnexion, execution_date=20221205T000000, start_date=20221206T223746, end_date=20221206T223746
+[2022-12-06 22:37:46,594] {taskinstance.py:1265} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 22:37:46,604] {local_task_job.py:151} INFO - Task exited with return code 0

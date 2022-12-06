@@ -16,7 +16,7 @@ password = 'pass'
 user_name_opensky='rim-DE'
 password_opensky='bde_airlines'
 p = PositionAircraftData (user_name_opensky, password_opensky)
-dict_positions=p.extractPositionAircrafttData ('positions.json')
+p.extractPositionAircrafttData ('positions.json')
 
 l=LoadPositionAircraftData (host, port, user, password)
 #connect to mongodb

@@ -3,6 +3,8 @@ from airflow import DAG
 from airflow.utils.dates import days_ago
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
+from elasticsearch import Elasticsearch
+
 
 import sys
 # ajouter le chemin des scripts dans le container airflow
@@ -21,42 +23,39 @@ my_elastic_search_dag = DAG(
     catchup=False
 )
 
-def random_fail_task():
-    random.seed()
-    a = random.randint(0, 100)
-    print(a)
-    if a > 20:
-        raise Exception('This task randomly failed')
 
 
 def successful_task():
     #time.sleep(10)
     print('success')
 
-def extract(task_instance):
+
+def check_connexion ():
+    es = Elasticsearch(hosts = "http://elastic-search:9200")
+    if es.ping():
+        if (es.cluster.health()['status'] not in ['yellow','green']):
+            raise Exception('Connexion elasticSearch non disponible')
+    else: 
+        raise Exception('Connexion elasticSearch non disponible')
+
+
+def extract():
     user_name_opensky='rim-DE'
     password_opensky='bde_airlines'
     e = FlightData (user_name_opensky, password_opensky)
-    dict_flights=e.extractFlightData ()
-    task_instance.xcom_push(
-        key="dict_flights",
-        value=dict_flights
-    )
+    e.extractFlightData ('flights.json')
+    
 
-def load(task_instance):
-    dict_flights=task_instance.xcom_pull(
-            key="dict_flights",
-            task_ids=['ExtractFlights']
-        )
+def load():
     l=LoadFlightData ("http://elastic-search:9200")
-    #connect to elasticsearch
+    #se connecter à elasticsearch
     es=l.connect()
     #Chargement des vols dans elasticsearch
-    l.load(es, dict_flights)
+    l.load(es, 'flights.json')
 
 CheckElasticSearchConnexion = PythonOperator(
     task_id='CheckElasticSearchConnexion',
-    python_callable=random_fail_task,
+    python_callable=check_connexion,
     retries=50,
     retry_delay=timedelta(seconds=5),
     dag=my_elastic_search_dag
@@ -73,6 +72,8 @@ ExtractFlights = PythonOperator(
     task_id='ExtractFlights',
     python_callable=extract,
     dag=my_elastic_search_dag,
+    retries=5,
+    retry_delay=timedelta(seconds=5),
     trigger_rule='all_success'
 )
 

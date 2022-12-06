@@ -1,5 +1,6 @@
 from elasticsearch import Elasticsearch, helpers, RequestError
 import time
+import json
 
 class LoadFlightData :
 
@@ -9,123 +10,26 @@ class LoadFlightData :
     def connect (self):
       es = Elasticsearch(hosts = self.hosts)
         
-      """
-        while True:
-            es = Elasticsearch(hosts = self.hosts)
-            if es.ping():
-                if (es.cluster.health()['status'] in ['yellow','green']):
-                    break
-            time.sleep(5)
-      """
       return es
 
-    def load(self, es, json_data):
-      mappings={
-      "mappings" : {
-      "properties" : {
-        "arrivalAirportCandidatesCount" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "callsign" : {
-          "type" : "text",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "departureAirportCandidatesCount" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estArrivalAirport" : {
-          "type" : "text",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estArrivalAirportHorizDistance" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estArrivalAirportVertDistance" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estDepartureAirport" : {
-          "type" : "text",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estDepartureAirportHorizDistance" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "estDepartureAirportVertDistance" : {
-          "type" : "integer",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "firstSeen" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
-        },
-        "icao24" : {
-          "type" : "text",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "lastSeen" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
-        }
-        }
-      }
-      }
-      try:
-          es.indices.create(index='flights', body=mappings)
-      except RequestError as es1:
-          print("L'index flights existe déjà")
+    def load(self, es, json_file):
+
+      # Opening JSON file
+      f = open(json_file)
   
+      # returns JSON object as a dictionary
+      json_data = json.load(f)
+
+      
       print ("debut de chargement des données dans elasticsearch") 
-      #for doc in dict['flight']:
-          #es.index(index="flights", document=doc)
       helpers.bulk(es, json_data, index='flights',  request_timeout=200)
       print ("fin de chargement des données dans elasticsearch")
-        
 
+
+
+
+
+    """
     def load_positions (self, es, list_dict_positions):
         mappings={
         "mappings":{
@@ -220,3 +124,4 @@ class LoadFlightData :
         helpers.bulk(es, list_dict_positions, index='positions',  request_timeout=200)
         
         print ("fin de chargement des positions dans elasticsearch")
+      """

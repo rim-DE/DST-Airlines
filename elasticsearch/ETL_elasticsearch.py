@@ -7,14 +7,14 @@ from load_flight_data_in_elasticsearch import LoadFlightData
 
 
 #hosts = os.environ['ELASTICSEARCH_HOSTS']
-#hosts = "http://localhost:9200"
-hosts = "http://elastic-search:9200"
+hosts = "http://localhost:9200"
+#hosts = "http://elastic-search:9200"
 
 #Etraction des vols
 user_name_opensky='rim-DE'
 password_opensky='bde_airlines'
 e = FlightData (user_name_opensky, password_opensky)
-dict_flights=e.extractFlightData ()
+e.extractFlightData ('flights.json')
 
 #Etraction des positions des avions
 #p = PositionAircraftData (user_name_opensky, password_opensky)
@@ -24,6 +24,6 @@ l=LoadFlightData (hosts)
 #connect to elasticsearch
 es=l.connect()
 #Chargement des vols dans elasticsearch
-l.load(es, dict_flights)
+l.load(es, 'flights.json')
 #Chargement des positions des avions dans elasticsearch
 #l.load_positions (es, list_dict_positions)

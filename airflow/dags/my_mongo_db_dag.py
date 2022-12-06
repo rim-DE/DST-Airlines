@@ -19,7 +19,7 @@ my_mongo_db_dag = DAG(
     schedule_interval=timedelta(seconds=45),
     default_args={
         'owner': 'airflow',
-        'start_date': datetime.now(),
+        'start_date': datetime(2022, 12, 1, 8, 0, 0),
     },
     catchup=False
 )
@@ -38,7 +38,7 @@ def check_connexion ():
     try:
         myclient.admin.command('ping')
     except ConnectionFailure:
-        print("Server not available")
+        print("Connexion mongoDB non disponible")
 
 def extract():
     user_name_opensky='rim-DE'
@@ -80,6 +80,8 @@ LoadPositionsInMongoDB = PythonOperator(
     task_id='LoadPositionsInMongoDB',
     python_callable=load,
     dag=my_mongo_db_dag,
+    retries=3,
+    retry_delay=timedelta(seconds=2),
     trigger_rule='all_success'
 )
 

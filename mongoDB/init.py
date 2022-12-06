@@ -21,6 +21,12 @@ elif "aircraft" in dblist:
     if "positions" not in collist:
         mycol = mydb["positions"]
         mycol.insert_one({})
+
+print ("Connexion à mongoDB réussie!")
+print ("création de la base <aircraft> si elle n'existe pas!")
+print ("création de la collection <positions> si elle n'existe pas!")
+
+
 """
 
 try:

@@ -1,0 +1,113 @@
+from elasticsearch import Elasticsearch, RequestError
+import time
+
+#hosts = "http://localhost:9200"
+hosts = "http://elastic-search:9200"
+
+while True:
+    es = Elasticsearch(hosts = hosts)
+    if es.ping():
+        if (es.cluster.health()['status'] in ['yellow','green']):
+            break
+    time.sleep(5)
+
+mappings = {
+      "properties" : {
+        "arrivalAirportCandidatesCount" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "callsign" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "departureAirportCandidatesCount" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estArrivalAirport" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estArrivalAirportHorizDistance" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estArrivalAirportVertDistance" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estDepartureAirport" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estDepartureAirportHorizDistance" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "estDepartureAirportVertDistance" : {
+          "type" : "integer",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "firstSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        },
+        "icao24" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "lastSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        }
+        }
+      }
+      
+
+index_name = 'flights'
+if not es.indices.exists(index=index_name):
+    es.indices.create(index=index_name, mappings=mappings)
+
+print ("Connexion à elastic-search réussie!")
+print ("Création de l'index flights s'il n'existe pas!")
