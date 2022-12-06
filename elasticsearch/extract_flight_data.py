@@ -1,6 +1,7 @@
 import requests
 import json
 from datetime import datetime, timedelta
+import pprint
 
 #Les vols sont mis à jour par un traitement batch la nuit, c'est-à-dire que seuls les vols de la veille ou d'avant sont disponibles.
 
@@ -29,10 +30,6 @@ class FlightData:
         end = datetime.strptime(datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d'), '%Y-%m-%d')
         end += timedelta(hours=18, minutes=00) 
         
-        dict_flights = {
-        'flight' : []
-        }
-
         # Extract data from Opensky API
         # on ne peut récupérer les données que par plage de deux heures
         i=0
@@ -48,18 +45,19 @@ class FlightData:
 
 
             #if flights_data.status_code != 200:
-                #pprint.pp(positions_data)
+                #pprint.pp(flights_data)
                 #return {}
-   
+            
             json_data = flights_data.json()
             for flight in json_data:
                 flight ['firstSeen'] = str(datetime.fromtimestamp(flight ['firstSeen']))
                 flight ['lastSeen'] = str(datetime.fromtimestamp(flight ['lastSeen']))
-            dict_flights['flight'].extend(json_data)
-    
+            
+            
+            
         #exporter l'ensemble des données extraites dans un fichier json
         #with open ('flights_data.json', 'w') as f:
-           # json.dump(dict_flights, f)
+           #json.dump(dict_flights, f)
         
         
-        return dict_flights
+        return json_data

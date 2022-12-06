@@ -19,9 +19,9 @@ class LoadFlightData :
       """
       return es
 
-    def load(self, es, dict):
-
-      mappings = {
+    def load(self, es, json_data):
+      mappings={
+      "mappings" : {
       "properties" : {
         "arrivalAirportCandidatesCount" : {
           "type" : "integer",
@@ -113,21 +113,22 @@ class LoadFlightData :
         }
         }
       }
-
+      }
       try:
-          es.indices.create(index='flights', mappings=mappings)
+          es.indices.create(index='flights', body=mappings)
       except RequestError as es1:
           print("L'index flights existe déjà")
   
       print ("debut de chargement des données dans elasticsearch") 
-      for doc in dict['flight']:
-          es.index(index="flights", document=doc)
+      #for doc in dict['flight']:
+          #es.index(index="flights", document=doc)
+      helpers.bulk(es, json_data, index='flights',  request_timeout=200)
       print ("fin de chargement des données dans elasticsearch")
         
 
     def load_positions (self, es, list_dict_positions):
-
-        mappings = {
+        mappings={
+        "mappings":{
         "properties" : {
         "icao24" : {
           "type" : "text",
@@ -207,10 +208,11 @@ class LoadFlightData :
         
           }
         }
+        }
 
 
         try:
-          es.indices.create(index='positions', mappings=mappings)
+          es.indices.create(index='positions', body=mappings)
         except RequestError as es1:
           print("L'index positions existe déjà")
   

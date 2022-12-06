@@ -11,7 +11,7 @@ class PositionAircraftData:
         self.user_name = user_name
         self.password = password
 
-    def extractPositionAircrafttData (self):
+    def extractPositionAircrafttData (self, fileName):
 
         """
             retourne les positions de tous les avions 
@@ -38,9 +38,8 @@ class PositionAircraftData:
             
             dict_positions = flight_df.to_dict('records')
 
-            #with open ('test.json', 'w') as f:
-                #json.dump(dict_positions, f)
+            with open (fileName, 'w') as f:
+                json.dump(dict_positions, f)
+            #print (f.name)
         
-        return dict_positions
-
     

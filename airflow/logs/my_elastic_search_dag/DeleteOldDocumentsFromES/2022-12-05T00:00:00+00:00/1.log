@@ -1,0 +1,138 @@
+[2022-12-06 08:17:57,017] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 08:17:57,025] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 08:17:57,025] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 08:17:57,025] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 08:17:57,025] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 08:17:57,037] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 08:17:57,040] {standard_task_runner.py:52} INFO - Started process 335 to run task
+[2022-12-06 08:17:57,043] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '10', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp2__ol4pu', '--error-file', '/tmp/tmphsak32uh']
+[2022-12-06 08:17:57,044] {standard_task_runner.py:77} INFO - Job 10: Subtask DeleteOldDocumentsFromES
+[2022-12-06 08:17:57,081] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host dca14bec1869
+[2022-12-06 08:17:57,123] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 08:17:57,123] {logging_mixin.py:104} INFO - success
+[2022-12-06 08:17:57,123] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 08:17:57,133] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T081757, end_date=20221206T081757
+[2022-12-06 08:17:57,154] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 08:17:57,177] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 09:11:55,525] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:11:55,540] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:11:55,540] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:11:55,540] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 09:11:55,540] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:11:55,547] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 09:11:55,551] {standard_task_runner.py:52} INFO - Started process 626 to run task
+[2022-12-06 09:11:55,554] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '11', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp8c9pjtkc', '--error-file', '/tmp/tmpd2aje5vi']
+[2022-12-06 09:11:55,555] {standard_task_runner.py:77} INFO - Job 11: Subtask DeleteOldDocumentsFromES
+[2022-12-06 09:11:55,597] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host 27e998575b9f
+[2022-12-06 09:11:55,820] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 09:11:55,822] {logging_mixin.py:104} INFO - success
+[2022-12-06 09:11:55,823] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 09:11:55,850] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T091155, end_date=20221206T091155
+[2022-12-06 09:11:55,878] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 09:11:55,916] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 09:18:29,251] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:18:29,267] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:18:29,267] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:18:29,267] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 09:18:29,267] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:18:29,275] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 09:18:29,279] {standard_task_runner.py:52} INFO - Started process 1177 to run task
+[2022-12-06 09:18:29,283] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '27', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpkikgwl6m', '--error-file', '/tmp/tmpgmrwb3of']
+[2022-12-06 09:18:29,283] {standard_task_runner.py:77} INFO - Job 27: Subtask DeleteOldDocumentsFromES
+[2022-12-06 09:18:29,320] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host 27e998575b9f
+[2022-12-06 09:18:29,390] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 09:18:29,390] {logging_mixin.py:104} INFO - success
+[2022-12-06 09:18:29,390] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 09:18:29,399] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T091829, end_date=20221206T091829
+[2022-12-06 09:18:29,420] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 09:18:29,456] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 09:53:15,255] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:53:15,283] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:53:15,283] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:53:15,283] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 09:53:15,283] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:53:15,294] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 09:53:15,299] {standard_task_runner.py:52} INFO - Started process 228 to run task
+[2022-12-06 09:53:15,305] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '7', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpo9pgxr0z', '--error-file', '/tmp/tmptk_blmj9']
+[2022-12-06 09:53:15,305] {standard_task_runner.py:77} INFO - Job 7: Subtask DeleteOldDocumentsFromES
+[2022-12-06 09:53:15,361] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host 4467c39e9c9a
+[2022-12-06 09:53:15,441] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 09:53:15,444] {logging_mixin.py:104} INFO - success
+[2022-12-06 09:53:15,444] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 09:53:15,457] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T095315, end_date=20221206T095315
+[2022-12-06 09:53:15,488] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 09:53:15,526] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 10:00:56,116] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 10:00:56,124] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 10:00:56,125] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 10:00:56,125] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 10:00:56,125] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 10:00:56,137] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 10:00:56,143] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '12', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpnoflde51', '--error-file', '/tmp/tmp6e_mk558']
+[2022-12-06 10:00:56,140] {standard_task_runner.py:52} INFO - Started process 375 to run task
+[2022-12-06 10:00:56,144] {standard_task_runner.py:77} INFO - Job 12: Subtask DeleteOldDocumentsFromES
+[2022-12-06 10:00:56,203] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host 3d95da7470fe
+[2022-12-06 10:00:56,247] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 10:00:56,248] {logging_mixin.py:104} INFO - success
+[2022-12-06 10:00:56,248] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 10:00:56,258] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T100056, end_date=20221206T100056
+[2022-12-06 10:00:56,280] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 10:00:56,318] {local_task_job.py:151} INFO - Task exited with return code 0
+[2022-12-06 10:20:44,945] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 10:20:44,967] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 10:20:44,968] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 10:20:44,968] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 10:20:44,968] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 10:20:44,979] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): DeleteOldDocumentsFromES> on 2022-12-05T00:00:00+00:00
+[2022-12-06 10:20:44,984] {standard_task_runner.py:52} INFO - Started process 285 to run task
+[2022-12-06 10:20:44,990] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'DeleteOldDocumentsFromES', '2022-12-05T00:00:00+00:00', '--job-id', '9', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmpudlhfkoe', '--error-file', '/tmp/tmp_ty3jz7b']
+[2022-12-06 10:20:44,990] {standard_task_runner.py:77} INFO - Job 9: Subtask DeleteOldDocumentsFromES
+[2022-12-06 10:20:45,052] {logging_mixin.py:104} INFO - Running <TaskInstance: my_elastic_search_dag.DeleteOldDocumentsFromES 2022-12-05T00:00:00+00:00 [running]> on host 33da1fe70ee2
+[2022-12-06 10:20:45,294] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=DeleteOldDocumentsFromES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 10:20:45,295] {logging_mixin.py:104} INFO - success
+[2022-12-06 10:20:45,295] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 10:20:45,310] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_elastic_search_dag, task_id=DeleteOldDocumentsFromES, execution_date=20221205T000000, start_date=20221206T102044, end_date=20221206T102045
+[2022-12-06 10:20:45,459] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 10:20:45,486] {local_task_job.py:151} INFO - Task exited with return code 0

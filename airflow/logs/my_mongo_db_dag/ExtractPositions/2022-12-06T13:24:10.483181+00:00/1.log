@@ -1,0 +1,22 @@
+[2022-12-06 13:24:58,286] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.ExtractPositions 2022-12-06T13:24:10.483181+00:00 [queued]>
+[2022-12-06 13:24:58,303] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.ExtractPositions 2022-12-06T13:24:10.483181+00:00 [queued]>
+[2022-12-06 13:24:58,303] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 13:24:58,303] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 13:24:58,303] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 13:24:58,326] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): ExtractPositions> on 2022-12-06T13:24:10.483181+00:00
+[2022-12-06 13:24:58,331] {standard_task_runner.py:52} INFO - Started process 595 to run task
+[2022-12-06 13:24:58,335] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_mongo_db_dag', 'ExtractPositions', '2022-12-06T13:24:10.483181+00:00', '--job-id', '31', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_mongo_db_dag.py', '--cfg-path', '/tmp/tmp64rw9ug1', '--error-file', '/tmp/tmpl9tdb6p4']
+[2022-12-06 13:24:58,335] {standard_task_runner.py:77} INFO - Job 31: Subtask ExtractPositions
+[2022-12-06 13:24:58,386] {logging_mixin.py:104} INFO - Running <TaskInstance: my_mongo_db_dag.ExtractPositions 2022-12-06T13:24:10.483181+00:00 [running]> on host 2e62a70a5623
+[2022-12-06 13:24:58,430] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_mongo_db_dag
+AIRFLOW_CTX_TASK_ID=ExtractPositions
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-06T13:24:10.483181+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-06T13:24:10.483181+00:00
+[2022-12-06 13:24:59,565] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 13:24:59,575] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_mongo_db_dag, task_id=ExtractPositions, execution_date=20221206T132410, start_date=20221206T132458, end_date=20221206T132459
+[2022-12-06 13:24:59,597] {taskinstance.py:1265} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 13:24:59,632] {local_task_job.py:151} INFO - Task exited with return code 0

@@ -1,0 +1,24 @@
+[2022-12-06 13:28:00,055] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.LoadPositionsInMongoDB 2022-12-06T13:27:10.483181+00:00 [queued]>
+[2022-12-06 13:28:00,068] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.LoadPositionsInMongoDB 2022-12-06T13:27:10.483181+00:00 [queued]>
+[2022-12-06 13:28:00,068] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 13:28:00,069] {taskinstance.py:1088} INFO - Starting attempt 1 of 1
+[2022-12-06 13:28:00,069] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 13:28:00,086] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): LoadPositionsInMongoDB> on 2022-12-06T13:27:10.483181+00:00
+[2022-12-06 13:28:00,090] {standard_task_runner.py:52} INFO - Started process 884 to run task
+[2022-12-06 13:28:00,094] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_mongo_db_dag', 'LoadPositionsInMongoDB', '2022-12-06T13:27:10.483181+00:00', '--job-id', '50', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_mongo_db_dag.py', '--cfg-path', '/tmp/tmp53sov1qq', '--error-file', '/tmp/tmprwdu4t20']
+[2022-12-06 13:28:00,095] {standard_task_runner.py:77} INFO - Job 50: Subtask LoadPositionsInMongoDB
+[2022-12-06 13:28:00,139] {logging_mixin.py:104} INFO - Running <TaskInstance: my_mongo_db_dag.LoadPositionsInMongoDB 2022-12-06T13:27:10.483181+00:00 [running]> on host 2e62a70a5623
+[2022-12-06 13:28:00,187] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_mongo_db_dag
+AIRFLOW_CTX_TASK_ID=LoadPositionsInMongoDB
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-06T13:27:10.483181+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-06T13:27:10.483181+00:00
+[2022-12-06 13:28:00,339] {logging_mixin.py:104} INFO - debut de chargement des données dans mongodb
+[2022-12-06 13:28:00,518] {logging_mixin.py:104} INFO - fin de chargement des données dans mongodb
+[2022-12-06 13:28:00,522] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 13:28:00,535] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_mongo_db_dag, task_id=LoadPositionsInMongoDB, execution_date=20221206T132710, start_date=20221206T132800, end_date=20221206T132800
+[2022-12-06 13:28:00,555] {taskinstance.py:1265} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 13:28:00,587] {local_task_job.py:151} INFO - Task exited with return code 0

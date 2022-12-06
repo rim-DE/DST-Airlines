@@ -1,0 +1,22 @@
+[2022-12-06 14:28:21,632] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.CheckMongoDBConnexion 2022-12-06T14:27:16.856178+00:00 [queued]>
+[2022-12-06 14:28:21,665] {taskinstance.py:896} INFO - Dependencies all met for <TaskInstance: my_mongo_db_dag.CheckMongoDBConnexion 2022-12-06T14:27:16.856178+00:00 [queued]>
+[2022-12-06 14:28:21,666] {taskinstance.py:1087} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 14:28:21,666] {taskinstance.py:1088} INFO - Starting attempt 1 of 51
+[2022-12-06 14:28:21,666] {taskinstance.py:1089} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 14:28:21,679] {taskinstance.py:1107} INFO - Executing <Task(PythonOperator): CheckMongoDBConnexion> on 2022-12-06T14:27:16.856178+00:00
+[2022-12-06 14:28:21,692] {standard_task_runner.py:52} INFO - Started process 169 to run task
+[2022-12-06 14:28:21,699] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_mongo_db_dag', 'CheckMongoDBConnexion', '2022-12-06T14:27:16.856178+00:00', '--job-id', '2', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/my_mongo_db_dag.py', '--cfg-path', '/tmp/tmp1chpfm1t', '--error-file', '/tmp/tmpau5i73f4']
+[2022-12-06 14:28:21,699] {standard_task_runner.py:77} INFO - Job 2: Subtask CheckMongoDBConnexion
+[2022-12-06 14:28:21,771] {logging_mixin.py:104} INFO - Running <TaskInstance: my_mongo_db_dag.CheckMongoDBConnexion 2022-12-06T14:27:16.856178+00:00 [running]> on host db4794db4ef9
+[2022-12-06 14:28:21,965] {taskinstance.py:1302} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_mongo_db_dag
+AIRFLOW_CTX_TASK_ID=CheckMongoDBConnexion
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-06T14:27:16.856178+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-06T14:27:16.856178+00:00
+[2022-12-06 14:28:22,036] {python.py:151} INFO - Done. Returned value was: None
+[2022-12-06 14:28:22,051] {taskinstance.py:1211} INFO - Marking task as SUCCESS. dag_id=my_mongo_db_dag, task_id=CheckMongoDBConnexion, execution_date=20221206T142716, start_date=20221206T142821, end_date=20221206T142822
+[2022-12-06 14:28:22,108] {taskinstance.py:1265} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2022-12-06 14:28:22,150] {local_task_job.py:151} INFO - Task exited with return code 0

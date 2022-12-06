@@ -1,0 +1,39 @@
+[2022-12-06 09:00:09,589] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES scheduled__2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:00:09,602] {taskinstance.py:1179} INFO - Dependencies all met for <TaskInstance: my_elastic_search_dag.LoadFlightsInES scheduled__2022-12-05T00:00:00+00:00 [queued]>
+[2022-12-06 09:00:09,602] {taskinstance.py:1376} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:00:09,602] {taskinstance.py:1377} INFO - Starting attempt 1 of 1
+[2022-12-06 09:00:09,602] {taskinstance.py:1378} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-06 09:00:09,621] {taskinstance.py:1397} INFO - Executing <Task(PythonOperator): LoadFlightsInES> on 2022-12-05 00:00:00+00:00
+[2022-12-06 09:00:09,629] {standard_task_runner.py:52} INFO - Started process 197 to run task
+[2022-12-06 09:00:09,633] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'my_elastic_search_dag', 'LoadFlightsInES', 'scheduled__2022-12-05T00:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/my_elastic_search_dag.py', '--cfg-path', '/tmp/tmp_msgsep0', '--error-file', '/tmp/tmpy859gsn6']
+[2022-12-06 09:00:09,634] {standard_task_runner.py:80} INFO - Job 7: Subtask LoadFlightsInES
+[2022-12-06 09:00:09,652] {warnings.py:110} WARNING - /home/***/.local/lib/python3.7/site-packages/***/configuration.py:528: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  option = self._get_environment_variables(deprecated_key, deprecated_section, key, section)
+
+[2022-12-06 09:00:09,732] {task_command.py:371} INFO - Running <TaskInstance: my_elastic_search_dag.LoadFlightsInES scheduled__2022-12-05T00:00:00+00:00 [running]> on host 94e1b8231027
+[2022-12-06 09:00:09,832] {taskinstance.py:1591} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=my_elastic_search_dag
+AIRFLOW_CTX_TASK_ID=LoadFlightsInES
+AIRFLOW_CTX_EXECUTION_DATE=2022-12-05T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-12-05T00:00:00+00:00
+[2022-12-06 09:00:09,849] {taskinstance.py:1909} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/my_elastic_search_dag.py", line 55, in load
+    l.load(es, dict_flights)
+  File "/opt/airflow/scripts/load_flight_data_in_elasticsearch.py", line 118, in load
+    es.indices.create(index='flights', mappings=mappings)
+  File "/home/airflow/.local/lib/python3.7/site-packages/elasticsearch/client/utils.py", line 168, in _wrapped
+    return func(*args, params=params, headers=headers, **kwargs)
+TypeError: create() got an unexpected keyword argument 'mappings'
+[2022-12-06 09:00:09,859] {taskinstance.py:1420} INFO - Marking task as FAILED. dag_id=my_elastic_search_dag, task_id=LoadFlightsInES, execution_date=20221205T000000, start_date=20221206T090009, end_date=20221206T090009
+[2022-12-06 09:00:09,874] {standard_task_runner.py:97} ERROR - Failed to execute job 7 for task LoadFlightsInES (create() got an unexpected keyword argument 'mappings'; 197)
+[2022-12-06 09:00:09,884] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-12-06 09:00:09,926] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

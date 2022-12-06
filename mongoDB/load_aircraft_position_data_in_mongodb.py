@@ -1,6 +1,7 @@
 import pprint
-
+import json
 from pymongo import MongoClient
+
 
 class LoadPositionAircraftData :
 
@@ -15,15 +16,19 @@ class LoadPositionAircraftData :
         return client
 
 
-    def load (self, client, dict_positions):
+    def load (self, client, json_file):
     
-        list_of_db = client.list_database_names()
- 
+        # Opening JSON file
+        f = open(json_file)
+  
+        # returns JSON object as 
+        # a dictionary
+        data = json.load(f)
         
         #La base de données ne sera crée que lors de la première insertion
         mydb = client['aircraft']
-        
         mycol = mydb["positions"]       
         print ("debut de chargement des données dans mongodb") 
-        mycol.insert_many(dict_positions)
+
+        mycol.insert_many(data)
         print ("fin de chargement des données dans mongodb")
