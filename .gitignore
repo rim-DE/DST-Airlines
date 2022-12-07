@@ -16,3 +16,4 @@ logs/dag_processor_manager/*
 logs/my_elastic_search_dag/*
 logs/my_mongo_db_dag/*
 logs/scheduler/*
+airflow/logs/*
