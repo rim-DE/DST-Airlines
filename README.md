@@ -62,10 +62,11 @@ $ sudo docker compose up <nom_service>
 - ElasticSearch:
 
 
-![image](https://user-images.githubusercontent.com/85707067/206480492-462ae158-32e0-4075-96b0-866ca8ee9606.png)
+![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
+
 
 - MongoDB:
 
 
-![image](https://user-images.githubusercontent.com/85707067/206480647-22ee2e0b-5482-4ba0-a379-54a57b2b3898.png)
+![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
 
