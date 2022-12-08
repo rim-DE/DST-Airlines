@@ -60,8 +60,8 @@ def insert_aeroport (list_of_tuples):
   
 
 # récupérer les données des aéroports scrappées et les insérer
-airport_tuples = csv_to_tuples("airport_csv.csv")
-insert_aeroport(airport_tuples)
+#airport_tuples = csv_to_tuples("airport_csv.csv")
+#insert_aeroport(airport_tuples)
 
 
 ## récupérer les données des compagnies aériennes et les insérer
@@ -84,6 +84,6 @@ def insert_compagnies (compagnies_tuples):
     mydb.close()
     print("connection MySQL est fermé")
 
-compagnies_tuples = csv_to_tuples("clean_aircraft.csv")
-print(compagnies_tuples[0:10])
-insert_compagnies(compagnies_tuples)
+#compagnies_tuples = csv_to_tuples("clean_aircraft.csv")
+#print(compagnies_tuples[0:10])
+#insert_compagnies(compagnies_tuples)

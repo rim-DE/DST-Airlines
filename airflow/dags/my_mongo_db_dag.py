@@ -16,6 +16,7 @@ from load_aircraft_position_data_in_mongodb import LoadPositionAircraftData
 
 my_mongo_db_dag = DAG(
     dag_id='my_mongo_db_dag',
+    tags=['dst-airlines'],
     schedule_interval=timedelta(seconds=45),
     default_args={
         'owner': 'airflow',
@@ -45,16 +46,9 @@ def extract():
     password_opensky='bde_airlines'
     p = PositionAircraftData (user_name_opensky, password_opensky)
     p.extractPositionAircrafttData ('positions.json')
-    #task_instance.xcom_push(
-        #key="dict_positions",
-        #value=dict_positions
-    #)
+    
 
 def load():
-    #dict_positions=task_instance.xcom_pull(
-    #       key="dict_positions",
-    #      task_ids=['ExtractPositions']
-    # )
     l=LoadPositionAircraftData ("my_mongo", 27017, 'admin', 'pass')
     #se connecter à mongodb
     cl=l.connect()
@@ -73,6 +67,8 @@ ExtractPositions = PythonOperator(
     task_id='ExtractPositions',
     python_callable=extract,
     dag=my_mongo_db_dag,
+    retries=10,
+    retry_delay=timedelta(seconds=5),
     trigger_rule='all_success'
 )
 
@@ -80,8 +76,8 @@ LoadPositionsInMongoDB = PythonOperator(
     task_id='LoadPositionsInMongoDB',
     python_callable=load,
     dag=my_mongo_db_dag,
-    retries=3,
-    retry_delay=timedelta(seconds=2),
+    retries=10,
+    retry_delay=timedelta(seconds=5),
     trigger_rule='all_success'
 )
 

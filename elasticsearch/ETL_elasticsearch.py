@@ -1,5 +1,6 @@
 from extract_flight_data import FlightData
 from load_flight_data_in_elasticsearch import LoadFlightData
+from update_data_in_elastic_search import UpdateDataInES
 
 #import sys 
 #sys.path.append('../mongoDB')
@@ -9,7 +10,7 @@ from load_flight_data_in_elasticsearch import LoadFlightData
 #hosts = os.environ['ELASTICSEARCH_HOSTS']
 hosts = "http://localhost:9200"
 #hosts = "http://elastic-search:9200"
-
+"""
 #Etraction des vols
 user_name_opensky='rim-DE'
 password_opensky='bde_airlines'
@@ -27,3 +28,11 @@ es=l.connect()
 l.load(es, 'flights.json')
 #Chargement des positions des avions dans elasticsearch
 #l.load_positions (es, list_dict_positions)
+
+"""
+
+u=UpdateDataInES (hosts)
+#connect to elasticsearch
+es=u.connect()
+
+u.deleteOldData (es)

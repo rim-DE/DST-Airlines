@@ -59,7 +59,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__SMTP__SMTP_PASSWORD: "cfsrvkongsobheta"
     AIRFLOW__SMTP__SMTP_MAIL_FROM: "de.airflow@gmail.com"
 
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo elasticsearch}
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo beautifulsoup4}
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
@@ -68,7 +68,7 @@ x-airflow-common: &airflow-common
     - ./mongoDB:/opt/airflow/scripts/mongo
     - ./mysql:/opt/airflow/scripts/mysql
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
-  command: pip install -r /opt/airflow/scripts/requirements.txt
+
   depends_on:
     redis:
       condition: service_healthy
