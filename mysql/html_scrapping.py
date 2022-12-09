@@ -138,8 +138,8 @@ class HTMLScrapping:
                 csv_out.writerow(mytuple)
 
 # appel de la fonction tuples_to_csv
-#tuples_to_csv('airport_csv')
 
+#tuples_to_csv('airport_csv')
 
 
 

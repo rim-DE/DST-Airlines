@@ -49,3 +49,24 @@ $ sudo docker compose up <nom_service>
 - Pour lance Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search"
 - Pour inspecter les données mysql: installer un client en local (dbeaver par expl) et tester. 
 
+
+
+***Airflow pour l'ordonnancement des tâches:***
+
+***Les Dags dans Airflow:***
+- mysql: 
+
+
+![image](https://user-images.githubusercontent.com/85707067/206479594-9f6d25fc-f4ba-4337-849c-ec127c77ebbd.png)
+
+- ElasticSearch:
+
+
+![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
+
+
+- MongoDB:
+
+
+![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
+
