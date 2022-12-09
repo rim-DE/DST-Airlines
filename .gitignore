@@ -6,6 +6,7 @@ data-db/*
 db-data/*
 __pycache__/*
 elasticsearch/__pycache__/*
+mysql/__pycache__/*
 airflow/dags/__pycache__/*
 mongoDB/__pycache__/*
 es-data/*

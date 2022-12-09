@@ -22,7 +22,7 @@ my_elastic_search_dag = DAG(
         'owner': 'airflow',
         'start_date': datetime(2022, 12, 1, 8, 0, 0),
     },
-    
+    catchup=False
 )
 
 

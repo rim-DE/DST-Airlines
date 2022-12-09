@@ -4,9 +4,6 @@ import os
 import pprint
 from pymongo import MongoClient
 
-#user = os.environ['MONGO_INITDB_ROOT_USERNAME']
-#password = os.environ['MONGO_INITDB_ROOT_PASSWORD']
-
 host = "localhost"
 #host = "my_mongo"
 port = 27017
