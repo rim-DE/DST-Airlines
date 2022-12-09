@@ -64,7 +64,7 @@ x-airflow-common: &airflow-common
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
-    - ./elasticsearch:/opt/airflow/scripts/es
+    - ./elasticsearch:/opt/airflow/scripts/es 
     - ./mongoDB:/opt/airflow/scripts/mongo
     - ./mysql:/opt/airflow/scripts/mysql
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"

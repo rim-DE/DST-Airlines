@@ -12,9 +12,4 @@ es-data/*
 docker-compose2.yml
 data/*
 *.log
-logs/dag_id=my_elastic_search_dag/*
-logs/dag_processor_manager/*
-logs/my_elastic_search_dag/*
-logs/my_mongo_db_dag/*
-logs/scheduler/*
 airflow/logs/*

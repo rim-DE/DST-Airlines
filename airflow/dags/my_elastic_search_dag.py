@@ -7,7 +7,7 @@ from elasticsearch import Elasticsearch
 
 
 import sys
-# ajouter le chemin des scripts dans le container airflow
+# ajouter le chemin des scripts défini dans le container airflow à l'interpréteur python
 # Il faut d'abord ajouter ce volume dans le docker-compose 
 sys.path.append('/opt/airflow/scripts/es')
 from load_flight_data_in_elasticsearch import LoadFlightData
@@ -47,7 +47,7 @@ def extract():
     user_name_opensky='rim-DE'
     password_opensky='bde_airlines'
     e = FlightData (user_name_opensky, password_opensky)
-    e.extractFlightData ('flights.json')
+    e.extractFlightData ('flights2.json')
     
 
 def load():
@@ -55,7 +55,7 @@ def load():
     #se connecter à elasticsearch
     es=l.connect()
     #Chargement des vols dans elasticsearch
-    l.load(es, 'flights.json')
+    l.load(es, 'flights2.json')
 
 CheckElasticSearchConnexion = PythonOperator(
     task_id='CheckElasticSearchConnexion',

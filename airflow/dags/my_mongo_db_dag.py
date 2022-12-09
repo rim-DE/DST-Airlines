@@ -8,7 +8,7 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
 import sys
-# ajouter le chemin des scripts dans le container airflow
+# ajouter le chemin des scripts défini dans le container airflow à l'interpréteur python
 # Il faut d'abord ajouter ce volume dans le docker-compose 
 sys.path.append('/opt/airflow/scripts/mongo')
 from extract_aircraft_position_data import PositionAircraftData
