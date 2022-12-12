@@ -2,6 +2,8 @@ import pprint
 import pandas as pd
 import requests
 import json
+from datetime import datetime
+import time
 
 #L'extraction des positions des avions doit se faire toute les 45 secondes
 class PositionAircraftData:
@@ -32,6 +34,10 @@ class PositionAircraftData:
             columns = ['icao24','callsign','origin_country','time_position','last_contact','long','lat','baro_altitude','on_ground (T/F)','velocity','true_track','vertical_rate','sensors',
             'geo_altitude','squawk','spi','position_source']
             flight_df=pd.DataFrame(positions_data.json()['states'],columns=columns)
+
+            flight_df.loc[:, 'extract_date'] =  time.mktime(datetime.now().timetuple())
+            
+            #flight_df.loc[:, 'extract_date'] = time.mktime(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
             #flight_df ['time_position'] = flight_df ['time_position'].apply (lambda tp : str(datetime.fromtimestamp(tp)))
             #flight_df ['last_contact'] = flight_df ['last_contact'].apply (lambda tp : str(datetime.fromtimestamp(tp)))

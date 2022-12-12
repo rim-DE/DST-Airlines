@@ -61,16 +61,23 @@ x-airflow-common: &airflow-common
     DB_URL: airlines-mysql
     AIRFLOW__CELERY__OPERATION_TIMEOUT: "300"
 
+<<<<<<< HEAD
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo elasticsearch beautifulsoup4}
+=======
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo beautifulsoup4}
+>>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
-    - ./elasticsearch:/opt/airflow/scripts/es
-    - ./mongoDB:/opt/airflow/scripts/mongo
-    - ./mysql:/opt/airflow/scripts/mysql
+    - ./elasticsearch:/opt/airflow/scripts/es #volume pour les scripts es dans le conteneur airflow
+    - ./mongoDB:/opt/airflow/scripts/mongo #volume pour les scripts mongodb dans le conteneur airflow
+    - ./mysql:/opt/airflow/scripts/mysql #volume pour les scripts mysql dans le conteneur airflow
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
+<<<<<<< HEAD
   command: pip install -r /opt/airflow/scripts/mysql/requirements.txt
+=======
+>>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
   depends_on:
     redis:
       condition: service_healthy
