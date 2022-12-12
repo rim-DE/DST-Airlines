@@ -60,12 +60,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__SMTP__SMTP_MAIL_FROM: "de.airflow@gmail.com"
     DB_URL: airlines-mysql
     AIRFLOW__CELERY__OPERATION_TIMEOUT: "300"
-
-<<<<<<< HEAD
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo elasticsearch beautifulsoup4}
-=======
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo beautifulsoup4}
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- pymongo beautifulsoup4} #installation des requirements qui ne sont pas par défaut sous airflow
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
@@ -74,10 +69,7 @@ x-airflow-common: &airflow-common
     - ./mongoDB:/opt/airflow/scripts/mongo #volume pour les scripts mongodb dans le conteneur airflow
     - ./mysql:/opt/airflow/scripts/mysql #volume pour les scripts mysql dans le conteneur airflow
   user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
-<<<<<<< HEAD
-  command: pip install -r /opt/airflow/scripts/mysql/requirements.txt
-=======
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
+
   depends_on:
     redis:
       condition: service_healthy
@@ -119,7 +111,7 @@ services:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 10
     restart: always
 
   airflow-scheduler:

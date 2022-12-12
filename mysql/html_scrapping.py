@@ -17,13 +17,8 @@ class HTMLScrapping:
         sortie: ensemble de données en liste
         '''
         #pour générer la liste des lettres de l'alphabet
-<<<<<<< HEAD
         list_alphabet = list(string.ascii_lowercase) 
-        #list_alphabet = ['a']
-=======
-        #list_alphabet = list(string.ascii_lowercase) 
-        list_alphabet = ['a']
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
+
         #initialisation des listes des données 
         city_all = []
         country_all = []
@@ -142,12 +137,7 @@ class HTMLScrapping:
             for mytuple in data:
                 csv_out.writerow(mytuple)
 
-<<<<<<< HEAD
-=======
-# appel de la fonction tuples_to_csv
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
 
-#tuples_to_csv('airport_csv')
 
 
 

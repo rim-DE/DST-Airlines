@@ -4,12 +4,8 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import mysql.connector
 import traceback 
-<<<<<<< HEAD
 import os
 import csv
-=======
-
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
 import sys
 sys.path.append('/opt/airflow/scripts/mysql')
 from remplissage_mysqldb import UpdateBase
@@ -40,7 +36,6 @@ def check_connexion():
 def scrapping():
     s = HTMLScrapping()
     s.tuples_to_csv('airport_csv_3.csv')
-<<<<<<< HEAD
     with open('airport_csv_3.csv') as file_obj:
         # Create reader object by passing the file object to reader method
         reader_obj = csv.reader(file_obj)
@@ -48,31 +43,7 @@ def scrapping():
         for row in reader_obj:
             print(row)
 
-'''
-ef delete_airoports():
-=======
 
-def delete_airoports():
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
-    try:
-        u = UpdateBase()
-        mydb=u.connection()
-        mycursor = mydb.cursor()
-        sql = "DELETE FROM aeroports"
-        mycursor.execute(sql)
-        mydb.commit()
-        print("Contenu de la table aeroports supprimé!")
-    
-    except Exception:
-        print(traceback.format_exc())
-        mydb.rollback()
-      
-    finally:
-        mycursor.close()
-        mydb.close()
-        print("connection MySQL est fermée")
-<<<<<<< HEAD
-'''
 
 def insert_scrapped_aeroports():
     try: 
@@ -88,23 +59,6 @@ def insert_scrapped_aeroports():
         mycursor.executemany(sql, tuples)
         mydb.commit()
         print("Table aeroports mis à jour!")
-=======
-
-def insert_scrapped_aeroports():
-    s = HTMLScrapping()
-    s.tuples_to_csv('airport_csv_3.csv')
-
-    
-    try: 
-        u = UpdateBase()
-        tuples = u.csv_to_tuples("airport_csv_3.csv")
-        mydb=u.connection()
-        mycursor = mydb.cursor()
-        sql = "INSERT IGNORE INTO aeroports (ICAO, IATA, nom, taille, pays, ville) VALUES (%s, %s,%s, %s, %s, %s )"
-        mycursor.executemany(tuples)
-        mydb.commit()
-        print("Table aeroports supprimé!")
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
     except Exception:
         print(traceback.format_exc())
         mydb.rollback()
@@ -132,24 +86,8 @@ htmlScrapping = PythonOperator(
     retry_delay=timedelta(seconds=10),
     dag=mysql_dag,
 )
-<<<<<<< HEAD
-'''
-=======
 
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
-delete_airoports= PythonOperator(
-    task_id='delete_airoports',
-    python_callable=delete_airoports,
-    retries=10,
-    retry_delay=timedelta(seconds=10),
-    dag=mysql_dag,
-    trigger_rule='all_success'
-)
-<<<<<<< HEAD
-'''
-=======
 
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
 insert_scrapped_aeroports = PythonOperator(
     task_id='insert_scrapped_aeroports',
     python_callable=insert_scrapped_aeroports,
@@ -159,8 +97,4 @@ insert_scrapped_aeroports = PythonOperator(
     trigger_rule='all_success'
 )
 
-<<<<<<< HEAD
 [CheckMysqlConnexion, htmlScrapping] >> insert_scrapped_aeroports
-=======
-[CheckMysqlConnexion, htmlScrapping] >> delete_airoports >> insert_scrapped_aeroports
->>>>>>> 3dc9ac6f2b9443dec12c8722d93f6d8416edeb4e
