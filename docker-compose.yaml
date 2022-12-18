@@ -273,6 +273,15 @@ services:
     depends_on:
       - mysql
 
+  dst-airlines-front:
+    container_name: dst-airlines-front
+    build:
+      context: ./dst-airlines-front
+    environment:
+      PYTHONUNBUFFERED: TRUE
+    ports:
+      - "8050:8050"
+
 
 volumes:
   postgres-db-volume:
