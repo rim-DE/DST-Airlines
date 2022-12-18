@@ -229,8 +229,7 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
-      
-   logstash:
+  logstash:
     container_name: logstash
     image: docker.elastic.co/logstash/logstash:8.1.2
     ports:
