@@ -83,9 +83,16 @@ Le Docker-compose.yaml gère et regroupe toute les images des services. Les imag
 ***Commandes utiles:***
 
 - Pour lancer docker-compose.yml:
-$ sudo docker compose up
+
+```bash
+docker-compose up airflow-init
+```
 - pour sélectionner le service à lancer à partir de docker compose:
-$ sudo docker compose up <nom_service>
+
+```bash
+# Nom du service ??
+sudo docker compose up <nom_service>
+```
                  
 ***Pour lancer les images:***
 
