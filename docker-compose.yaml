@@ -277,7 +277,7 @@ services:
     build:
       context: ./dst-airlines-front
     environment:
-      PYTHONUNBUFFERED: TRUE
+      PYTHONUNBUFFERED: "true"
     ports:
       - "8050:8050"
 

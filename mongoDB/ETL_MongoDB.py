@@ -16,14 +16,16 @@ password = 'pass'
 print (time.mktime(datetime.now().timetuple()))
 
 #print(time.mktime(datetime.strptime(datetime.now(), '%Y-%m-%d %H:%M:%S').timetuple()))
+print (datetime.now().strftime ('%Y-%m-%d %H:%M'))
 
+'''
 client = MongoClient(host= host, port=port, username=user, password=password)
 mydb = client['aircraft']    
 cursor = mydb.positions.find({'icao24':'aa56da'})
 for doc in cursor:
     pprint.pp(doc)
      
-'''
+
 #Etraction des positions des avions
 user_name_opensky='rim-DE'
 password_opensky='bde_airlines'
