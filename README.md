@@ -38,7 +38,9 @@ f. Logstash
 
 g. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
-*Les Dags dans Airflow:
+- Pour lancer Airflow: http://localhost:8080/ (user: airflow, passeword: airflow).
+
+- Les Dags dans Airflow:
 
 - Le dag mysql séxécute une fois par mois: 
 
