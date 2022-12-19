@@ -22,7 +22,7 @@ b-bis: Kibana: Pour analyser les données contenues dans les indexes d'Elasticse
 
 c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
 
-d. Mysq_folder :
+d. mysql :
 
 * Créer et charger la base de données Mysql. Ce dossier contient les scripts du scrapping HTML des données des aéroports.
 * Les données sont extrtaites de ce site: https://www.world-airport-codes.com
