@@ -229,6 +229,23 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
+  logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:8.1.2
+    ports:
+      - 5044:5044
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./logstash/pipeline/01_in.conf:/usr/share/logstash/pipeline/01_in.conf
+      - ./logstash/pipeline/02_in.conf:/usr/share/logstash/pipeline/02_in.conf
+      - ./logstash/pipeline/01_out.conf:/usr/share/logstash/pipeline/01_out.conf
+      - ./logstash/pipeline/02_out.conf:/usr/share/logstash/pipeline/02_out.conf
+      - ./logstash/pipeline/filter.conf:/usr/share/logstash/pipeline/filter.conf
+      - ./logstash/mysql-connector-j-8.0.31.jar:/usr/share/logstash/mysql-connector-j-8.0.31.jar
+
 
  
   mysql:
@@ -254,6 +271,15 @@ services:
       - DB_URL=airlines-mysql
     depends_on:
       - mysql
+
+  dst-airlines-front:
+    container_name: dst-airlines-front
+    build:
+      context: ./dst-airlines-front
+    environment:
+      PYTHONUNBUFFERED: TRUE
+    ports:
+      - "8050:8050"
 
 
 volumes:

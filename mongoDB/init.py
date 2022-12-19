@@ -14,13 +14,11 @@ dblist = myclient.list_database_names()
 if "aircraft" not in dblist:
     mydb = myclient['aircraft']
     mycol = mydb["positions"]
-    mycol.insert_one({})
 elif "aircraft" in dblist:
     mydb = myclient['aircraft']
     collist = mydb.list_collection_names()
     if "positions" not in collist:
         mycol = mydb["positions"]
-        mycol.insert_one({})
 
 print ("Connexion à mongoDB réussie!")
 print ("création de la base <aircraft> si elle n'existe pas!")

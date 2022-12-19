@@ -11,7 +11,7 @@ while True:
             break
     time.sleep(5)
 
-mappings = {
+mappings_flights = {
       "properties" : {
         "arrivalAirportCandidatesCount" : {
           "type" : "integer",
@@ -107,7 +107,131 @@ mappings = {
 
 index_name = 'flights'
 if not es.indices.exists(index=index_name):
-    es.indices.create(index=index_name, mappings=mappings)
+    es.indices.create(index=index_name, mappings=mappings_flights)
+
+
+mappings_airports = {
+      "properties" : {
+        "iCAO" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "IATA" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "Nom" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "Taille" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "Pays" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "Ville" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        }
+      }
+    }
+
+index_name = 'airports'
+if not es.indices.exists(index=index_name):
+    es.indices.create(index=index_name, mappings=mappings_airports)
+
+
+mappings_companies = {
+        "properties" : {
+          "icao24" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "registration" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "manufacturericao" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "manufacturername" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "model" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "serialnumber" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          },
+          "ownername" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword"
+              }
+            }
+          }
+        }
+      }
+
+index_name = 'companies'
+if not es.indices.exists(index=index_name):
+    es.indices.create(index=index_name, mappings=mappings_companies)
 
 print ("Connexion à elastic-search réussie!")
 print ("Création de l'index flights s'il n'existe pas!")
