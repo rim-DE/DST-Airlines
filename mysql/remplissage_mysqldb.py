@@ -28,5 +28,3 @@ class UpdateBase:
       except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
       return mydb
-
-   
