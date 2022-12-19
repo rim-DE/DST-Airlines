@@ -61,7 +61,7 @@ g. Airflow: Pour automatiser l'extraction des données et le chargement dans les
 
 ![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
 
-*** Docker-compose.yaml:***
+***Docker-compose.yaml:***
 
 Le Docker-compose.yaml gère et regroupe toute les images des services. Les images sont:
 
