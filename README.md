@@ -31,6 +31,9 @@ e. Dash :
 
 * Pour lancer Dash : http://localhost:8050/
 
+![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
+
+
 f. Logstash
 
 * Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'indexe airports
@@ -38,30 +41,26 @@ f. Logstash
 
 g. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
-- Pour lancer Airflow: http://localhost:8080/ (user: airflow, passeword: airflow).
+- Pour lancer Airflow: http://localhost:8080/ (user: airflow, password: airflow).
 
 - Les Dags dans Airflow:
 
-- Le dag mysql séxécute une fois par mois: 
+1.  Le dag mysql séxécute une fois par mois: 
 
 
 ![image](https://user-images.githubusercontent.com/85707067/206479594-9f6d25fc-f4ba-4337-849c-ec127c77ebbd.png)
 
-- Le dag ElasticSearch s'éxécute tous les jours à 8h du matin:
+2.  Le dag ElasticSearch s'éxécute tous les jours à 8h du matin:
 
 
 ![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
 
 
-- Le dag MongoDB, s'éxécute toute les 45 seconces:
+3.  Le dag MongoDB, s'éxécute toute les 45 seconces:
 
 
 ![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
 
-- Dash : 
-
-
-![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
 
 ***Docker-compose.yaml:***
 
