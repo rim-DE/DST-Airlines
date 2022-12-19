@@ -27,7 +27,9 @@ d. Mysq_folder :
 * Créer et charger la base de données Mysql. Ce dossier contient les scripts du scrapping HTML des données des aéroports.
 * Les données sont extrtaites de ce site: https://www.world-airport-codes.com
 
-e. Dash
+e. Dash : 
+
+* Pour lancer Dash : http://localhost:8050/
 
 f. Logstash
 
@@ -88,4 +90,9 @@ $ sudo docker compose up <nom_service>
 
 
 ![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
+
+- Dash : 
+
+
+![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
 
