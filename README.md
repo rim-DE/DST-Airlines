@@ -1,26 +1,42 @@
 ***Revue sur le contenu*** 
 
-La branche contient 3 répertoires. Chaque répertoire contient :
+La branche contient 7 répertoires dont un contenant la documentation des étapes du projet et les autres contenantt :
 
-- Les scripts python permettant la création et le chargement de la base.
-- "requirements.txt": contenant les dépendances nécessaires pour exécuter  les scripts
-- un docker file: pour créer une image python. Elle permet d'installer les requirements et builder les scripts 
+- Un ou plusieurs scripts Python permettant la configuration et/ou le chargement du container portant le nom de ce répertoire.
+- Un fichier "requirements.txt" contenant les dépendances nécessaires pour la bonne exécution de ces scripts.
+- Un Dockerfile créant une image Python qui exécute les scripts de configuration et/ou de chargement des containers.
+- Dans certains cas, des fichiers complémentaires facilitant le paramètrage et/ou l'exploitation des containers construits.
 
 
 ***Les répertoires sont:*** 
 
 a. doc: fichier de documentation concernant l'architecture de stockage adoptée
 
-b. Elasticsearch: Pour créer et charger la base de données ElasticSearch à partir de scrapping api OpenSky
+b. Elasticsearch: Pour créer 3 indexes ElasticSearch et les remplir 
+
+* Créer 3 indexes : flights, airports, companies
+* Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
+* Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana
+
+b-bis: Kibana: Pour analyser les données contenues dans les indexes d'Elasticsearch
 
 c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
 
 d. Mysq_folder :
 
-* Créer et charger la base de données Mysql. C dossier contient les scripts du scrapping HTML des données des aéroports.
-* Les données sont extrtaites de ce site: https://www.world-airport-codes.com/alphabetical/airport-code/a.html?page=1
-                 
-e. Docker-compose.yml : gère et regroupe toute les images des services. Les images sont:
+* Créer et charger la base de données Mysql. Ce dossier contient les scripts du scrapping HTML des données des aéroports.
+* Les données sont extrtaites de ce site: https://www.world-airport-codes.com
+
+e. Dash
+
+f. Logstash
+
+* Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'indexe airports
+* Créer un pipeline pour charger mensuellement la table compagnies contenue dans la base de données du container MySQL vers l'indexe companies
+
+g. Airflow
+
+h. Docker-compose.yml : gère et regroupe toute les images des services. Les images sont:
 
 1. mongo: image de la base de données mongoDB
 2. mongo_load: image python qui charge mongoDB
@@ -31,8 +47,11 @@ e. Docker-compose.yml : gère et regroupe toute les images des services. Les ima
 7. RQ: Le lancement des services es_load et kibana dépendent du service Elasticsearch.
 8. mysql : image de la base de données mysql. dans le volume, on a définit le schema.sql pour créer la base et les deux tables. 
 9. python-mysql: image python qui permet de scrapper les données et les charger dans mysql. 
+10. logstash: image Logstash qui copie les données de MySQL à Elasticsearch
+11. Dash:
   
   Le volume dans docker-compose est dynamique et géré entièrement par docker. C'est pour quoi on a définit le service  "volumes".
+
 
 
 ***Commandes utiles:***
