@@ -275,7 +275,7 @@ services:
   dst-airlines-front:
     container_name: dst-airlines-front
     build:
-      context: ./dst-airlines-front
+      context: ./dash
     environment:
       PYTHONUNBUFFERED: "true"
     ports:
