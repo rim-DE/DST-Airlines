@@ -12,13 +12,13 @@ La branche contient 7 répertoires dont un contenant la documentation des étape
 
 a. doc: fichier de documentation concernant l'architecture de stockage adoptée
 
-b. Elasticsearch: Pour créer 3 indexes ElasticSearch et les remplir 
+b. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir 
 
 * Créer 3 indexes : flights, airports, companies
 * Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
 * Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana
 
-b-bis: Kibana: Pour analyser les données contenues dans les indexes d'Elasticsearch
+b-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
 
 c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
 
@@ -36,9 +36,34 @@ f. Logstash
 * Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'indexe airports
 * Créer un pipeline pour charger mensuellement la table compagnies contenue dans la base de données du container MySQL vers l'indexe companies
 
-g. Airflow
+g. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
-h. Docker-compose.yml : gère et regroupe toute les images des services. Les images sont:
+*Les Dags dans Airflow:
+
+- Le dag mysql séxécute une fois par mois: 
+
+
+![image](https://user-images.githubusercontent.com/85707067/206479594-9f6d25fc-f4ba-4337-849c-ec127c77ebbd.png)
+
+- Le dag ElasticSearch s'éxécute tous les jours à 8h du matin:
+
+
+![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
+
+
+- Le dag MongoDB, s'éxécute toute les 45 seconces:
+
+
+![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
+
+- Dash : 
+
+
+![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
+
+*** Docker-compose.yaml:***
+
+Le Docker-compose.yaml gère et regroupe toute les images des services. Les images sont:
 
 1. mongo: image de la base de données mongoDB
 2. mongo_load: image python qui charge mongoDB
@@ -53,8 +78,6 @@ h. Docker-compose.yml : gère et regroupe toute les images des services. Les ima
 11. Dash:
   
   Le volume dans docker-compose est dynamique et géré entièrement par docker. C'est pour quoi on a définit le service  "volumes".
-
-
 
 ***Commandes utiles:***
 
@@ -72,27 +95,6 @@ $ sudo docker compose up <nom_service>
 
 
 
-***Airflow pour l'ordonnancement des tâches:***
-
-***Les Dags dans Airflow:***
-- mysql: 
 
 
-![image](https://user-images.githubusercontent.com/85707067/206479594-9f6d25fc-f4ba-4337-849c-ec127c77ebbd.png)
-
-- ElasticSearch:
-
-
-![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
-
-
-- MongoDB:
-
-
-![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
-
-- Dash : 
-
-
-![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
 
