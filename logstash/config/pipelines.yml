@@ -1,5 +1,5 @@
 
-- pipeline.id: my-pipeline_1
+- pipeline.id: my-pipeline_companies # ce pipeline importe la table "compagnies" de mysql à elastic
   path.config: "/usr/share/logstash/pipeline/{01_in,filter,01_out}.conf"
-- pipeline.id: my-pipeline_2
+- pipeline.id: my-pipeline_airports # ce pipeline importe la table "aéroports" de mysql à elastic
   path.config: "/usr/share/logstash/pipeline/{02_in,filter,02_out}.conf"
