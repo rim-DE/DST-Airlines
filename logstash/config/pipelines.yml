@@ -1,4 +1,8 @@
-
+#Chaque pipeline a trois étapes : input, filter, output (l'équivalent d'un ETL classique)
+  # une étape input pour se connecter à la table source mysql et exporte les données
+  # une étape filter pour effectuer des transformations pendant le déplacement (si nécessaire)
+  # une étape output pour se connecter à l'index cible elasticsearch et importe les données
+  
 - pipeline.id: my-pipeline_companies # ce pipeline importe la table "compagnies" de mysql à elastic
   path.config: "/usr/share/logstash/pipeline/{01_in,filter,01_out}.conf"
 - pipeline.id: my-pipeline_airports # ce pipeline importe la table "aéroports" de mysql à elastic
