@@ -18,6 +18,9 @@ b. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir
 * Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
 * Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana
 
+![image](https://user-images.githubusercontent.com/62347456/209557739-c5c84433-84a6-40de-a88c-954e60e7d328.png)
+
+
 b-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
 
 c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
