@@ -1,0 +1,321 @@
+#creation of enrich APIs
+
+## match companies icao24 -> to flights icao 24
+## match airports icao -> to flights estDepartureAirport
+## match airports icao -> to flights estArrivalAirport
+
+## 6 steps
+### step1: create 2 enrich policies
+### step2: execute the policies
+### step3: configure 3 pipelines
+### step4: apply enrichments with reindex APIs
+### step5: create an index with
+### step6: delete pipelines, policies and transitional indexes
+
+### step1: create 2 enrich policies
+PUT /_enrich/policy/icao24-policy
+{
+  "match": {
+    "indices": "companies",
+    "match_field": "icao24",
+    "enrich_fields": ["ownername", "manufacturername", "model","icao24"]
+  }
+}
+PUT /_enrich/policy/icao-policy
+{
+  "match": {
+    "indices": "airports",
+    "match_field": "icao",
+    "enrich_fields": ["ville", "nom", "taille","pays"]
+  }
+}
+
+
+
+### step2: execute the policies 
+POST /_enrich/policy/icao24-policy/_execute
+POST /_enrich/policy/icao-policy/_execute
+
+
+
+### step3: configure 3 pipelines
+#configure icao24_lookup pipeline to match companies icao24 with to flights icao 24
+#to change icao24 to [aircraft with enriched fields]
+#to remove unrelevant fields
+PUT /_ingest/pipeline/icao24_lookup
+{
+  "description" : "Enriching flights details with companies data",
+  "processors" : [
+    {
+      "enrich" : {
+        "policy_name": "icao24-policy",
+        "field" : "icao24",
+        "target_field": "aircraft",
+        "max_matches": "1"
+      }
+    },
+    {
+      "remove": {
+        "field": ["icao24","estDepartureAirportHorizDistance", "estDepartureAirportVertDistance", "estArrivalAirportHorizDistance", "estArrivalAirportVertDistance", "departureAirportCandidatesCount", "arrivalAirportCandidatesCount"]
+      }
+    }
+  ]
+}
+
+#configure icao_departure_lookup pipeline to match airports icao with to flights estDepartureAirport
+#to change estDepartureAirport to [DepartureAirport with enriched fields]
+PUT /_ingest/pipeline/icao_departure_lookup
+{
+  "description" : "Enriching flights details with departure airports data",
+  "processors" : [
+    {
+      "enrich" : {
+        "policy_name": "icao-policy",
+        "field" : "estDepartureAirport",
+        "target_field": "DepartureAirport",
+        "max_matches": "1"
+      }
+    },
+    {
+      "remove": {
+        "field": ["estDepartureAirport"]
+      }
+    }
+  ]
+}
+
+#configure icao_arrival_lookup pipeline to match airports icao with to flights estArrivalAirport
+#to change estArrivalAirport to [ArrivalAirport with enriched fields]
+PUT /_ingest/pipeline/icao_arrival_lookup
+{
+  "description" : "Enriching flights details with arrival airports data",
+  "processors" : [
+    {
+      "enrich" : {
+        "policy_name": "icao-policy",
+        "field" : "estArrivalAirport",
+        "target_field": "ArrivalAirport",
+        "max_matches": "1"
+      }
+    },
+    {
+      "remove": {
+        "field": ["estArrivalAirport"]
+      }
+    }
+  ]
+}
+
+### step4: apply enrichments with reindex APIs
+POST _reindex
+{
+  "source": {
+    "index": "flights"
+  },
+  "dest": {
+    "index": "flights_",
+    "pipeline": "icao24_lookup"
+  }
+}
+POST _reindex
+{
+  "source": {
+    "index": "flights_"
+  },
+  "dest": {
+    "index": "flights__",
+    "pipeline": "icao_departure_lookup"
+  }
+}
+POST _reindex
+{
+  "source": {
+    "index": "flights__"
+  },
+  "dest": {
+    "index": "flights___",
+    "pipeline": "icao_arrival_lookup"
+  }
+}
+
+GET /flights___/_count
+GET /flights___/_mapping
+
+#we need to reindex the data because the some fields are not in an appropriate format
+
+### step5: create an index with the appropiate format and reindex the documents
+
+PUT /flights_enriched
+{
+  "settings": {
+    "number_of_shards": 2,
+    "number_of_replicas": 1
+  },
+  "mappings" : {
+      "properties" : {
+        "ArrivalAirport" : {
+          "properties" : {
+            "icao" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "nom" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "pays" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "taille" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ville" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "DepartureAirport" : {
+          "properties" : {
+            "icao" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "nom" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "pays" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "taille" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ville" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "aircraft" : {
+          "properties" : {
+            "icao24" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "manufacturername" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "model" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ownername" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "callsign" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "firstSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        },
+        "lastSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        }
+      }
+    }
+  }
+
+
+POST _reindex
+{
+  "source": {
+    "index": "flights___"
+  },
+  "dest": {
+    "index": "flights_enriched"
+  }
+}
+
+### step6: delete policies , pipelines and transitional indexes
+DELETE /_ingest/pipeline/icao24_lookup
+DELETE /_ingest/pipeline/icao_departure_lookup
+DELETE /_ingest/pipeline/icao_arrival_lookup
+DELETE /_enrich/policy/icao24-policy
+DELETE /_enrich/policy/icao-policy
+DELETE /flights_
+DELETE /flights__
+DELETE /flights___
+#DELETE /flights_enriched
+
