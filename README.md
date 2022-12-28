@@ -50,8 +50,8 @@ g. Airflow: Pour automatiser l'extraction des données et le chargement dans les
 
 1.  Le dag mysql séxécute une fois par mois: 
 
+![image](https://user-images.githubusercontent.com/85707067/209880759-793cb322-4feb-48aa-8a21-d6ff10af98af.png)
 
-![image](https://user-images.githubusercontent.com/85707067/206479594-9f6d25fc-f4ba-4337-849c-ec127c77ebbd.png)
 
 2.  Le dag ElasticSearch s'éxécute tous les jours à 8h du matin:
 
