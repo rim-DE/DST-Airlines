@@ -1,4 +1,8 @@
-***Revue sur le contenu*** 
+# Suivi du traffic aérien
+- Suivi en temps réel du traffic aérien
+- Analyse des données de l'historique du vol
+
+## Revue sur le contenu
 
 La branche contient 7 répertoires dont un contenant la documentation des étapes du projet et les autres contenantt :
 
@@ -8,7 +12,7 @@ La branche contient 7 répertoires dont un contenant la documentation des étape
 - Dans certains cas, des fichiers complémentaires facilitant le paramètrage et/ou l'exploitation des containers construits.
 
 
-***Les répertoires sont:*** 
+### Présentation des répertoires
 
 a. doc: fichier de documentation concernant l'architecture de stockage adoptée
 
@@ -18,7 +22,9 @@ b. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir
 * Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
 * Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana
 
-![image](https://user-images.githubusercontent.com/62347456/209557739-c5c84433-84a6-40de-a88c-954e60e7d328.png)
+<p align="center">
+  <img width="80%" src="./images/kibana.png" />
+</p>
 
 
 b-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
@@ -32,9 +38,11 @@ d. mysql :
 
 e. Dash : 
 
-* Pour lancer Dash : http://localhost:8050/
+<p align="center">
+  <img width="80%" src="./images/dash.png" />
+</p>
 
-![dash](https://user-images.githubusercontent.com/47364591/208427261-6d9d9a29-2586-4be7-b9a5-bac606417935.png)
+
 
 
 f. Logstash
@@ -44,28 +52,32 @@ f. Logstash
 
 g. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
-- Pour lancer Airflow: http://localhost:8080/ (user: airflow, password: airflow).
+Les Dags définis dans Airflow sont:
 
-- Les Dags dans Airflow:
+1.  Le dag mysql pour l'automatisation de la mise à jour de la table "Aeroport" dans MySQL. Il s'exécute une fois par mois: 
 
-1.  Le dag mysql séxécute une fois par mois: 
-
-![image](https://user-images.githubusercontent.com/85707067/209880759-793cb322-4feb-48aa-8a21-d6ff10af98af.png)
-
-
-2.  Le dag ElasticSearch s'éxécute tous les jours à 8h du matin:
+<p align="center">
+  <img width="60%" src="./images/dag_mysql.png" />
+</p>
 
 
-![image](https://user-images.githubusercontent.com/85707067/206481204-9cc19408-9ce3-49e9-bea3-ebb7585c2585.png)
+
+2.  Le dag ElasticSearch pour l'automatisation du remplissage d'elasticsearch. Il s'exécute tous les jours à 8h du matin:
+
+<p align="center">
+  <img width="60%" src="./images/dag_es.png" />
+</p>
+
+3.  Le dag MongoDB pour l'automatisation du remplissage de la base MongoDB. Il s'exécute toute les 45 seconces:
+
+<p align="center">
+  <img width="60%" src="./images/dag_mongodb.png" />
+</p>
 
 
-3.  Le dag MongoDB, s'éxécute toute les 45 seconces:
 
 
-![image](https://user-images.githubusercontent.com/85707067/206481297-4d865462-3f11-4657-968c-45ef3fa3e4cc.png)
-
-
-***Docker-compose.yaml:***
+### Présentation du Docker-compose.yaml
 
 Le Docker-compose.yaml gère et regroupe toutes les images des services nécessaires pour ce projet. Les images sont:
 
@@ -84,30 +96,43 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
   
   Les volumes utilisés pour les bases de données sont dynamiques et gérés entièrement par docker. C'est pour quoi on a définit le service  "volumes".
 
-***Commandes utiles:***
 
-- Pour lancer docker-compose.yml:
-
-```bash
-# lancement airflow init
-docker-compose up airflow-init
-
-# lancement des différents services
-docker-compose up
-```
-- pour sélectionner le service à lancer à partir de docker compose:
+## Démarrage
+- Pour lancer le projet (lancer tous les conteneurs nécessaires), il suffit d'éxécuter la commande suivante dans un terminal:
 
 ```bash
-# Nom du service ??
-sudo docker compose up <nom_service>
+setup.sh
 ```
+- Pour lancer les Dags airflow, il s'agit d'accéder au conteneur airflow :
+```bash
+docker exec -ti dst-airlines_airflow-scheduler_1 bash
+```
+- Une fois à l'intérieur du conteneur, il s'agit de lancer les trois dags permettant l'automatisation du remplissage des bases de données.
+```bash
+# activer le dag associé au remplissage de la base mysql
+airflow dags unpause my_mongo_db_dag
+# lancer le dag associé au remplissage de la base mysql
+airflow dags trigger mysql_dag
+# activer le dag associé au remplissage de la base mongodb
+airflow dags unpause my_mongo_db_dag
+# lancer le dag associé au remplissage de la base mongodb
+airflow dags trigger my_mongo_db_dag
+# activer le dag associé au remplissage de la base elasticsearch
+airflow dags unpause my_elastic_search_dag
+# lancer le dag associé au remplissage de la base elasticsearch
+airflow dags trigger my_elastic_search_dag
+```
+
+- Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
+- Pour analyser des données des historiques des vols:
+
+
                  
-***Pour lancer les images:***
+## Pour accéder aux bases de données:
 
-- Exécuter la commande: $ sudo docker compose up 
 - Pour lancer mongoDB: http://127.0.0.1:8081/ 
-- Pour lance Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search"
-- Pour inspecter les données mysql: installer un client en local (dbeaver par expl) et tester. 
+- Pour lancer Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search"
+- Pour inspecter les données mysql: installer un client en local (dbeaver par exemple) et tester. 
 
 
 

@@ -26,7 +26,6 @@ print ("création de la collection <positions> si elle n'existe pas!")
 
 
 """
-
 try:
     myclient.admin.command('ping')
     print("Connected!")

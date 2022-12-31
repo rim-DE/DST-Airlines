@@ -26,10 +26,8 @@ class FlightData:
         # on définit la date de début
         begin_date = datetime.strptime(datetime.strftime(datetime.now() - timedelta(2), '%Y-%m-%d'), '%Y-%m-%d')
         begin_date += timedelta(hours=20, minutes=00) 
-
         end = datetime.strptime(datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d'), '%Y-%m-%d')
         end += timedelta(hours=18, minutes=00) 
-        
         # Extract data from Opensky API
         # on ne peut récupérer les données que par plage de deux heures
         i=0
@@ -43,6 +41,7 @@ class FlightData:
             #begin_date = end_date + timedelta(hours=1)
             begin_date = end_date 
 
+           
 
             #if flights_data.status_code != 200:
                 #pprint.pp(flights_data)
