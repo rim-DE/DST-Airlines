@@ -67,21 +67,22 @@ g. Airflow: Pour automatiser l'extraction des données et le chargement dans les
 
 ***Docker-compose.yaml:***
 
-Le Docker-compose.yaml gère et regroupe toute les images des services. Les images sont:
+Le Docker-compose.yaml gère et regroupe toutes les images des services nécessaires pour ce projet. Les images sont:
 
 1. mongo: image de la base de données mongoDB
-2. mongo_load: image python qui charge mongoDB
-3. mongoexpress: image. RQ: Les services mongo_load et mongoexpress dépendent du service mongo.
+2. mongo_load: image python qui initialise la base mongoDB
+3. mongoexpress: image. 
+RQ: Les services mongo_load et mongoexpress dépendent du service mongo.
 4. elasticsearch: image de la base de données Elasticsearch
-5. es_load: image python qui permet de charger Elasticsearch.
+5. es_load: image python qui permet d'initialiser la base Elasticsearch.
 6. kibana: image de l'interface utilisateur qui nous permet de visualiser les données Elasticsearch
-7. RQ: Le lancement des services es_load et kibana dépendent du service Elasticsearch.
-8. mysql : image de la base de données mysql. dans le volume, on a définit le schema.sql pour créer la base et les deux tables. 
-9. python-mysql: image python qui permet de scrapper les données et les charger dans mysql. 
-10. logstash: image Logstash qui copie les données de MySQL à Elasticsearch
-11. Dash:
+RQ: Le lancement des services es_load et kibana dépendent du service Elasticsearch.
+7. mysql: image de la base de données mysql. dans le volume, on a définit le schema.sql pour créer la base et les deux tables. 
+8. python-mysql: image python qui permet de scrapper les données et les charger dans mysql. 
+9. logstash: image Logstash qui copie les données de MySQL à Elasticsearch
+10. Dash: image python qui utilise dash pour visualiser les vols en temps réel.
   
-  Le volume dans docker-compose est dynamique et géré entièrement par docker. C'est pour quoi on a définit le service  "volumes".
+  Les volumes utilisés pour les bases de données sont dynamiques et gérés entièrement par docker. C'est pour quoi on a définit le service  "volumes".
 
 ***Commandes utiles:***
 
