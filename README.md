@@ -100,7 +100,7 @@ docker exec -ti dst-airlines_airflow-scheduler_1 bash
 - Une fois à l'intérieur du conteneur, il s'agit de lancer les trois dags permettant l'automatisation du remplissage des bases de données.
 ```bash
 # activer le dag associé au remplissage de la base mysql
-airflow dags unpause my_mongo_db_dag
+airflow dags unpause mysql_dag
 # lancer le dag associé au remplissage de la base mysql
 airflow dags trigger mysql_dag
 # activer le dag associé au remplissage de la base mongodb
