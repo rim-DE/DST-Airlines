@@ -24,11 +24,6 @@ c. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir
 * Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
 * Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana
 
-<p align="center">
-  <img width="80%" src="./images/kibana.png" />
-</p>
-
-
 c-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
 
 d. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
@@ -39,13 +34,6 @@ e. mysql :
 * Les données sont extrtaites de ce site: https://www.world-airport-codes.com
 
 f. Dash : pour créer une map contenant les positions des avions en temps réel en utilisant les données stockées dans la base mongodb
-
-<p align="center">
-  <img width="80%" src="./images/dash.png" />
-</p>
-
-
-
 
 g. Logstash
 
@@ -126,8 +114,15 @@ airflow dags trigger my_elastic_search_dag
 ```
 
 - Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
+<p align="center">
+  <img width="80%" src="./images/dash.png" />
+</p>
+
 - Pour analyser des données des historiques des vols:
 
+<p align="center">
+  <img width="80%" src="./images/kibana.png" />
+</p>
 
                  
 ## Pour accéder aux bases de données:
