@@ -1,6 +1,6 @@
 # Suivi du traffic aérien
 - Suivi en temps réel du traffic aérien
-- Analyse des données de l'historique du vol
+- Analyse des données des historiques des vols
 
 ## Revue sur le contenu
 
