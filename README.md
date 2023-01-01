@@ -4,11 +4,11 @@
 
 ## Revue sur le contenu
 
-La branche contient 7 répertoires dont un contenant la documentation des étapes du projet et les autres contenantt :
+La branche contient 8 répertoires dont doc contenant la documentation des étapes du projet, images contenant les figures utilisées dans ce readme et les autres contenant :
 
 - Un ou plusieurs scripts Python permettant la configuration et/ou le chargement du container portant le nom de ce répertoire.
 - Un fichier "requirements.txt" contenant les dépendances nécessaires pour la bonne exécution de ces scripts.
-- Un Dockerfile créant une image Python qui exécute les scripts de configuration et/ou de chargement des containers.
+- Un Dockerfile créant une image Python qui exécute les scripts de configuration et/ou de chargement des conteneurs docker.
 - Dans certains cas, des fichiers complémentaires facilitant le paramètrage et/ou l'exploitation des containers construits.
 
 
@@ -16,7 +16,9 @@ La branche contient 7 répertoires dont un contenant la documentation des étape
 
 a. doc: fichier de documentation concernant l'architecture de stockage adoptée
 
-b. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir 
+b. images: contient les figures utilisées dans ce readme
+
+c. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir 
 
 * Créer 3 indexes : flights, airports, companies
 * Charger journalièrement les données relatives aux vols enregistrés la veille dans l'indexe flights
@@ -27,16 +29,16 @@ b. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir
 </p>
 
 
-b-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
+c-bis: Kibana: pour analyser les données contenues dans les indexes d'Elasticsearch
 
-c. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
+d. MongoDB: pour créer et charger la base de données MongoDB à partir de scrapping api OpenSky
 
-d. mysql :
+e. mysql :
 
 * Créer et charger la base de données Mysql. Ce dossier contient les scripts du scrapping HTML des données des aéroports.
 * Les données sont extrtaites de ce site: https://www.world-airport-codes.com
 
-e. Dash : 
+f. Dash : pour créer une map contenant les positions des avions en temps réel en utilisant les données stockées dans la base mongodb
 
 <p align="center">
   <img width="80%" src="./images/dash.png" />
@@ -45,12 +47,12 @@ e. Dash :
 
 
 
-f. Logstash
+g. Logstash
 
 * Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'indexe airports
 * Créer un pipeline pour charger mensuellement la table compagnies contenue dans la base de données du container MySQL vers l'indexe companies
 
-g. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
+h. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
 Les Dags définis dans Airflow sont:
 
@@ -92,13 +94,13 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
 7. mysql: image de la base de données mysql. dans le volume, on a définit le schema.sql pour créer la base et les deux tables. 
 8. python-mysql: image python qui permet de scrapper les données et les charger dans mysql. 
 9. logstash: image Logstash qui copie les données de MySQL à Elasticsearch
-10. Dash: image python qui utilise dash pour visualiser les vols en temps réel.
+10. Dash: image python qui utilise dash pour visualiser les positions des avions en temps réel.
   
   Les volumes utilisés pour les bases de données sont dynamiques et gérés entièrement par docker. C'est pour quoi on a définit le service  "volumes".
 
 
 ## Démarrage
-- Pour lancer le projet (lancer tous les conteneurs nécessaires), il suffit d'éxécuter la commande suivante dans un terminal:
+- Pour lancer le projet (lancer tous les conteneurs nécessaires), il suffit d'éxécuter la commande suivante dans un terminal linux:
 
 ```bash
 setup.sh
