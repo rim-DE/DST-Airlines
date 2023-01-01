@@ -93,11 +93,11 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
 ```bash
 setup.sh
 ```
-- Pour lancer les Dags airflow, il s'agit d'accéder au conteneur airflow :
+- Pour lancer les dags airflow, il s'agit d'accéder d'abord au conteneur airflow :
 ```bash
 docker exec -ti dst-airlines_airflow-scheduler_1 bash
 ```
-- Une fois à l'intérieur du conteneur, il s'agit de lancer les trois dags permettant l'automatisation du remplissage des bases de données.
+- Une fois à l'intérieur du conteneur airflow, il s'agit de lancer les trois dags permettant l'automatisation du remplissage des bases de données.
 ```bash
 # activer le dag associé au remplissage de la base mysql
 airflow dags unpause mysql_dag
