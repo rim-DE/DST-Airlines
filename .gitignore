@@ -15,3 +15,4 @@ data/*
 *.log
 airflow/logs/*
 mysql/__pycache__/*
+.idea
