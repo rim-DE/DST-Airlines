@@ -150,21 +150,14 @@ app.layout = dbc.Container([
      dash.dependencies.Input('clear_selection_button', 'n_clicks')])
 def updateTable(clic_data, interval, nb_clicks):
     states = pd.DataFrame(get_all_flights_last_state())
-    
-    
-    dt_temp1 = states.sample()
 
-    if clic_data == None:
-        dt_temp1 = dt_temp1.drop('_id', axis=1).drop_duplicates()  
-        dt_temp1 = dt_temp1.T.reset_index().T.reset_index(drop=True)
-        return dt_temp1.T.to_dict('records')
+    dt_temp1 = states.loc[states['icao24'] == clic_data["points"][0]["text"]]
+    dt_temp1 = dt_temp1.drop('_id', axis=1).drop_duplicates()
+    dt_temp1 = dt_temp1.T.reset_index().T.reset_index(drop=True)
 
     if ctx.triggered_id == "clear_selection_button":
         return
 
-    dt_temp1 = states.loc[states['icao24'] == clic_data["points"][0]["hovertext"]]
-    dt_temp1 = dt_temp1.drop('_id', axis=1).drop_duplicates()
-    dt_temp1 = dt_temp1.T.reset_index().T.reset_index(drop=True)
     return dt_temp1.T.to_dict('records')
 
 
@@ -192,7 +185,7 @@ def display_map(country, interval, click_data, clear_button_data):
     else:
         df_states = pd.DataFrame(get_all_flights_last_state())
        
-    fig = go.Figure(data=go.Scattergeo(
+    fig = go.Figure(data=go.Scattermapbox(
         lon=df_states['long'],
         lat=df_states['lat'],
         text=df_states['icao24'],
@@ -200,19 +193,15 @@ def display_map(country, interval, click_data, clear_button_data):
         line=dict(width=4),
     
     ), )
-
-    fig.update_geos(
-    resolution=110,
-    showcountries=True
-    )
     
     fig.update_layout(
-        height=900,
+        height=600,
         margin=dict(l=0, r=0, t=0, b=0),
-        clickmode='event+select',
+        #clickmode='event+select',
         #paper_bgcolor="#DCDCDC",
          mapbox = {
-            'style': "stamen-terrain"
+            'style': "stamen-terrain",
+            "zoom" : 1
          }
     )
     return fig
