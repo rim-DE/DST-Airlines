@@ -91,7 +91,7 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
 - Pour lancer le projet (lancer tous les conteneurs nécessaires), il suffit d'éxécuter la commande suivante dans un terminal linux:
 
 ```bash
-setup.sh
+./setup.sh
 ```
 - Pour lancer les dags airflow, il s'agit d'accéder d'abord au conteneur airflow :
 ```bash
