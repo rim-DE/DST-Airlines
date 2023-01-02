@@ -115,7 +115,7 @@ airflow dags trigger my_elastic_search_dag
 
 - Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
 <p align="center">
-  [<img width="80%" src="./images/dash.png" />](https://github.com/rim-DE/DST-Airlines/issues/2#issue-1516191073)
+  https://github.com/rim-DE/DST-Airlines/issues/2#issue-1516191073
 </p>
 
 - Pour analyser des données des historiques des vols:
