@@ -149,7 +149,7 @@ services:
       _AIRFLOW_WWW_USER_CREATE: "true"
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-
+    
   flower:
     <<: *airflow-common
     command: celery flower
@@ -176,6 +176,7 @@ services:
       - mongo-data:/data/db
       - mongo-config:/data/configdb
     
+    
   mongo_load:
     image: mongo-python
     container_name: mongo-python
@@ -185,6 +186,7 @@ services:
       - mongoexpress
     build:
       context: ./mongoDB
+    
 
   mongoexpress:
     container_name: mongo-express
@@ -201,6 +203,7 @@ services:
     ports:
       - '8081:8081'
   
+  
   elasticsearch:
     container_name: elastic-search
     image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
@@ -212,6 +215,7 @@ services:
       - elastic-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+   
     
   es_load:
     image: elastic-python
@@ -221,6 +225,7 @@ services:
       - elasticsearch
     build:
       context: ./elasticsearch
+    
 
   kibana:
     container_name: kibana
@@ -229,7 +234,8 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
-    command: bash ./elasticsearch/load_dashboard.sh
+    #command: bash ./elasticsearch/load_dashboard.sh
+    
     
     
   logstash:
@@ -239,6 +245,7 @@ services:
       - 5044:5044
     depends_on:
       - elasticsearch
+      - python-mysql
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
@@ -248,6 +255,7 @@ services:
       - ./logstash/pipeline/02_out.conf:/usr/share/logstash/pipeline/02_out.conf
       - ./logstash/pipeline/filter.conf:/usr/share/logstash/pipeline/filter.conf
       - ./logstash/mysql-connector-j-8.0.31.jar:/usr/share/logstash/mysql-connector-j-8.0.31.jar
+    
 
 
  
@@ -262,6 +270,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/script/schema.sql:/docker-entrypoint-initdb.d/1.sql 
+    
   
   
   python-mysql:
@@ -274,6 +283,7 @@ services:
       - DB_URL=airlines-mysql
     depends_on:
       - mysql
+    
 
   dash:
     container_name: dash
@@ -283,6 +293,7 @@ services:
       PYTHONUNBUFFERED: "true"
     ports:
       - "8050:8050"
+    
 
 
 volumes:
@@ -291,3 +302,5 @@ volumes:
   mongo-data:
   mongo-config:
   elastic-data:
+
+

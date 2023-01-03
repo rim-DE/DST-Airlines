@@ -36,18 +36,11 @@ def check_connexion ():
     except Exception:
         print ('Connexion elasticSearch non disponible')
 
-def delete():
-    u=UpdateDataInES ("http://elastic-search:9200")
-    #se connecter à elasticsearch
-    es=u.connect()
-    #supprimer les anciens documents
-    u.deleteOldData (es)
-
 def extract():
     user_name_opensky='rim-DE'
     password_opensky='bde_airlines'
     e = FlightData (user_name_opensky, password_opensky)
-    e.extractFlightData ('flights2.json')
+    e.extractFlightData ('flights.json')
     
 
 def load():
@@ -55,7 +48,7 @@ def load():
     #se connecter à elasticsearch
     es=l.connect()
     #Chargement des vols dans elasticsearch
-    l.load(es, 'flights2.json')
+    l.load(es, 'flights.json')
 
 CheckElasticSearchConnexion = PythonOperator(
     task_id='CheckElasticSearchConnexion',
@@ -63,15 +56,6 @@ CheckElasticSearchConnexion = PythonOperator(
     retries=50,
     retry_delay=timedelta(seconds=5),
     dag=my_elastic_search_dag
-)
-
-DeleteOldDocumentsFromES = PythonOperator(
-    task_id='DeleteOldDocumentsFromES',
-    python_callable=delete,
-    dag=my_elastic_search_dag,
-    retries=10,
-    retry_delay=timedelta(seconds=10),
-    trigger_rule='all_success'
 )
 
 ExtractFlights = PythonOperator(
@@ -92,5 +76,7 @@ LoadFlightsInES = PythonOperator(
     trigger_rule='all_success'
 )
 
-ExtractFlights >> LoadFlightsInES
-CheckElasticSearchConnexion >> [DeleteOldDocumentsFromES, LoadFlightsInES]
+
+CheckElasticSearchConnexion >> ExtractFlights >> LoadFlightsInES
+
+

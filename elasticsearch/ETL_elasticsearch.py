@@ -13,10 +13,10 @@ hosts = "http://localhost:9200"
 user_name_opensky='rim-DE'
 password_opensky='bde_airlines'
 e = FlightData (user_name_opensky, password_opensky)
-e.extractFlightData ('flights.json')
+e.extractFlightData ('flights_test.json')
 
 
-
+"""
 l=LoadFlightData (hosts)
 #connect to elasticsearch
 es=l.connect()
@@ -24,7 +24,7 @@ es=l.connect()
 l.load(es, 'flights.json')
 #Chargement des positions des avions dans elasticsearch
 #l.load_positions (es, list_dict_positions)
-
+"""
 """
 
 u=UpdateDataInES (hosts)

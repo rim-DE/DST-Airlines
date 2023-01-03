@@ -90,12 +90,20 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
 
 
 ## Démarrage
-- Pour lancer le projet (lancer tous les conteneurs nécessaires), il suffit d'éxécuter la commande suivante dans un terminal linux:
+- Lancer le projet (tous les conteneurs nécessaires), en éxécutant la commande suivante dans un terminal linux:
 
 ```bash
 ./setup.sh
 ```
-- Pour lancer les dags airflow, il s'agit d'accéder d'abord au conteneur airflow :
+Le lancement des conteneurs et l'initialisation prend entre 20 et 30 minutes.
+Une fois le lancement est terminé et logstash fini tous les ETLs, vous aurez un message comme:
+```bash
+./setup.sh: line 12:  6220 Killed                  docker-compose up
+```
+
+Vous pouvez passer à la suite.
+
+- Lancer les dags airflow, en accédant d'abord au conteneur airflow :
 ```bash
 docker exec -ti dst-airlines_airflow-scheduler_1 bash
 ```
@@ -114,6 +122,15 @@ airflow dags unpause my_elastic_search_dag
 # lancer le dag associé au remplissage de la base elasticsearch
 airflow dags trigger my_elastic_search_dag
 ```
+- Quitter le conteneur airflow
+```bash
+exit
+```
+
+- Lancer dash:
+```bash
+docker-compose up -d dash
+```
 
 - Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
 <p align="center">
@@ -130,7 +147,7 @@ airflow dags trigger my_elastic_search_dag
 ## Pour accéder aux bases de données:
 
 - Pour lancer mongoDB: http://127.0.0.1:8081/ 
-- Pour lancer Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search"
+- Pour lancer Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search", GET /airports/_count, GET /companies/_count, etc.
 - Pour inspecter les données mysql: installer un client en local (dbeaver par exemple) et tester. 
 
 

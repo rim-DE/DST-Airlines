@@ -16,3 +16,4 @@ data/*
 airflow/logs/*
 mysql/__pycache__/*
 .idea
+images/*.Zone.Identifier
