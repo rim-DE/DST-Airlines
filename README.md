@@ -117,6 +117,7 @@ airflow dags trigger my_elastic_search_dag
 
 - Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
 <p align="center">
+
  <img width= "80%" src="./images/dash.png"/>
 </p>
 
