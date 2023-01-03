@@ -134,6 +134,7 @@ docker-compose up -d dash
 
 - Pour suivre le traffic en temps réel (en utilisant dash), allez à l'URL http://localhost:8050/
 <p align="center">
+
  <img width= "80%" src="./images/dash.png"/>
 </p>
 
