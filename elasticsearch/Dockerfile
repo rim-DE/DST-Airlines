@@ -14,4 +14,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 #Définir la commande à exécuter (le point d'entrée) au lancement du container
-CMD [ "python", "./init.py"]
+CMD [ "python", "./init.py"] 
+
+#attendre que les indexes airports et companies soient chargés
+CMD ["bash", "sleep 1200"] 
+
+#créer le dashboard Kibana
+CMD ["bash", "./init_kibana.sh"]
