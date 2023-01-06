@@ -245,6 +245,7 @@ services:
     depends_on:
       - elasticsearch
       - python-mysql
+      - kibana
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
