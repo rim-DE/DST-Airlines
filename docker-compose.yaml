@@ -234,7 +234,6 @@ services:
       - elasticsearch
     ports:
       - 5601:5601
-    #command: bash ./elasticsearch/load_dashboard.sh
     
     
   logstash:
