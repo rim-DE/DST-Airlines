@@ -129,161 +129,8 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
 }'
 
 
-
 #we reindex the data because the data are not in an appropriate format
-### step5: create an index with
-
-curl -XPUT "http://localhost:9200/flights_enriched" -H 'Content-Type: application/json' -d'
-{
-  "settings": {
-    "number_of_shards": 2,
-    "number_of_replicas": 1
-  },
-  "mappings" : {
-      "properties" : {
-        "ArrivalAirport" : {
-          "properties" : {
-            "icao" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "nom" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "pays" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "taille" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "ville" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            }
-          }
-        },
-        "DepartureAirport" : {
-          "properties" : {
-            "icao" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "nom" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "pays" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "taille" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "ville" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            }
-          }
-        },
-        "aircraft" : {
-          "properties" : {
-            "icao24" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "manufacturername" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "model" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            },
-            "ownername" : {
-              "type" : "text",
-              "fields" : {
-                "keyword" : {
-                  "type" : "keyword"
-                }
-              }
-            }
-          }
-        },
-        "callsign" : {
-          "type" : "text",
-          "fields" : {
-            "keyword" : {
-              "type" : "keyword"
-            }
-          }
-        },
-        "firstSeen" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
-        },
-        "lastSeen" : {
-          "type" : "date",
-          "format" : "yyyy-MM-dd HH:mm:ss"
-        }
-      }
-    }
-  }'
+### step5: reindex the data intoflights_enriched index
 
 curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
 {
@@ -300,9 +147,6 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao24_lookup"
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao_departure_lookup"
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao_arrival_lookup"
-curl -XDELETE "http://localhost:9200/_ingest/pipeline/location_arrival_lookup"
-curl -XDELETE "http://localhost:9200/_ingest/pipeline/location_departure_lookup"
-curl -XDELETE "http://localhost:9200/_enrich/policy/location-policy"
 curl -XDELETE "http://localhost:9200/_enrich/policy/icao24-policy"
 curl -XDELETE "http://localhost:9200/_enrich/policy/icao-policy"
 curl -XDELETE "http://localhost:9200/flights1"
@@ -320,4 +164,4 @@ curl -XPOST "http://localhost:9200/flights/_delete_by_query" -H 'Content-Type: a
 
 
 ## set kibana dashboard up
-curl -X POST "http://localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@dashboard_dst_airlines_2.0.ndjson -H 'kbn-xsrf: true'
+curl -X POST "http://localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@elasticsearch/dashboard_dst_airlines_2.0.ndjson -H 'kbn-xsrf: true'
