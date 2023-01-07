@@ -225,6 +225,7 @@ services:
       - elasticsearch
     build:
       context: ./elasticsearch
+    #command: python ./init.py
     
 
   kibana:
@@ -243,7 +244,6 @@ services:
       - 5044:5044
     depends_on:
       - elasticsearch
-      - python-mysql
       - kibana
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml

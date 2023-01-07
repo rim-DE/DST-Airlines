@@ -1,7 +1,6 @@
 import requests
 import json
 from datetime import datetime, timedelta
-import pprint
 
 #Les vols sont mis à jour par un traitement batch la nuit, c'est-à-dire que seuls les vols de la veille ou d'avant sont disponibles.
 
@@ -22,12 +21,18 @@ class FlightData:
         self.user_name = user_name
         self.password = password
 
-    def extractFlightData (self, fileName):
+    def extractFliaghtData (self):
         # on définit la date de début
         begin_date = datetime.strptime(datetime.strftime(datetime.now() - timedelta(2), '%Y-%m-%d'), '%Y-%m-%d')
         begin_date += timedelta(hours=20, minutes=00) 
+
         end = datetime.strptime(datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d'), '%Y-%m-%d')
         end += timedelta(hours=18, minutes=00) 
+        
+        dict_flights = {
+        'flight' : []
+        }
+
         # Extract data from Opensky API
         # on ne peut récupérer les données que par plage de deux heures
         i=0
@@ -41,22 +46,20 @@ class FlightData:
             #begin_date = end_date + timedelta(hours=1)
             begin_date = end_date 
 
-           
 
             #if flights_data.status_code != 200:
-                #pprint.pp(flights_data)
+                #pprint.pp(positions_data)
                 #return {}
-            
+   
             json_data = flights_data.json()
             for flight in json_data:
                 flight ['firstSeen'] = str(datetime.fromtimestamp(flight ['firstSeen']))
                 flight ['lastSeen'] = str(datetime.fromtimestamp(flight ['lastSeen']))
-            
-            
-            
+            dict_flights['flight'].extend(json_data)
+    
         #exporter l'ensemble des données extraites dans un fichier json
-        with open (fileName, 'w') as f:
-           json.dump(json_data, f)
+        #with open ('flights_data.json', 'w') as f:
+           # json.dump(dict_flights, f)
         
         
-        
+        return dict_flights

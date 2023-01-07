@@ -15,3 +15,5 @@ COPY . .
 
 #Définir la commande à exécuter (le point d'entrée) au lancement du container
 CMD [ "python", "./init.py"]
+
+CMD [ "python", "./ETL_elasticsearch.py"]
