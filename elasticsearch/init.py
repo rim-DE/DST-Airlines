@@ -11,6 +11,7 @@ while True:
             break
     time.sleep(5)
 
+
 mappings_flights = {
       "properties" : {
         "arrivalAirportCandidatesCount" : {
@@ -112,7 +113,7 @@ if not es.indices.exists(index=index_name):
 
 mappings_airports = {
       "properties" : {
-        "iCAO" : {
+        "icao" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -120,7 +121,7 @@ mappings_airports = {
             }
           }
         },
-        "IATA" : {
+        "iata" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -128,7 +129,7 @@ mappings_airports = {
             }
           }
         },
-        "Nom" : {
+        "nom" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -136,7 +137,7 @@ mappings_airports = {
             }
           }
         },
-        "Taille" : {
+        "taille" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -144,7 +145,7 @@ mappings_airports = {
             }
           }
         },
-        "Pays" : {
+        "pays" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -152,7 +153,7 @@ mappings_airports = {
             }
           }
         },
-        "Ville" : {
+        "ville" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -233,5 +234,157 @@ index_name = 'companies'
 if not es.indices.exists(index=index_name):
     es.indices.create(index=index_name, mappings=mappings_companies)
 
+
+mappings_flights_enriched = {
+    "properties" : {
+        "ArrivalAirport" : {
+          "properties" : {
+            "icao" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "nom" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "pays" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "taille" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ville" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "DepartureAirport" : {
+          "properties" : {
+            "icao" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "nom" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "pays" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "taille" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ville" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "aircraft" : {
+          "properties" : {
+            "icao24" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "manufacturername" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "model" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            },
+            "ownername" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword"
+                }
+              }
+            }
+          }
+        },
+        "callsign" : {
+          "type" : "text",
+          "fields" : {
+            "keyword" : {
+              "type" : "keyword"
+            }
+          }
+        },
+        "firstSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        },
+        "lastSeen" : {
+          "type" : "date",
+          "format" : "yyyy-MM-dd HH:mm:ss"
+        }
+      }
+    }
+
+index_name = 'flights_enriched'
+if not es.indices.exists(index=index_name):
+  es.indices.create(index=index_name, mappings=mappings_flights_enriched)
+
+
 print ("Connexion à elastic-search réussie!")
 print ("Création de l'index flights s'il n'existe pas!")
+
