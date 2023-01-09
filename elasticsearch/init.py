@@ -114,7 +114,7 @@ if not es.indices.exists(index=index_name):
 
 mappings_airports = {
       "properties" : {
-        "iCAO" : {
+        "icao" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -122,7 +122,7 @@ mappings_airports = {
             }
           }
         },
-        "IATA" : {
+        "iata" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -130,7 +130,7 @@ mappings_airports = {
             }
           }
         },
-        "Nom" : {
+        "nom" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -138,7 +138,7 @@ mappings_airports = {
             }
           }
         },
-        "Taille" : {
+        "taille" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -146,7 +146,7 @@ mappings_airports = {
             }
           }
         },
-        "Pays" : {
+        "pays" : {
           "type" : "text",
           "fields" : {
             "keyword" : {
@@ -154,7 +154,7 @@ mappings_airports = {
             }
           }
         },
-        "Ville" : {
+        "ville" : {
           "type" : "text",
           "fields" : {
             "keyword" : {

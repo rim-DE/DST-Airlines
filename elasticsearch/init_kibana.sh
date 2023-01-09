@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##enrich flights index
-### step1: create 3 enrich policies
+### step1: create 2 enrich policies
 curl -XPUT "http://localhost:9200/_enrich/policy/icao24-policy" -H 'Content-Type: application/json' -d'
 {
   "match": {
@@ -106,6 +106,8 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
   }
 }'
 
+sleep 10
+
 curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
 {
   "source": {
@@ -116,6 +118,8 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
     "pipeline": "icao_departure_lookup"
   }
 }'
+
+sleep 10
 
 curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
 {
@@ -128,7 +132,7 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
   }
 }'
 
-
+sleep 10
 
 #we reindex the data because the data are not in an appropriate format
 ### step5: create an index with
@@ -143,14 +147,12 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
   }
 }'
 
+sleep 10
 
 ### step6: delete policies , pipelines and transitional indexes
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao24_lookup"
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao_departure_lookup"
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao_arrival_lookup"
-curl -XDELETE "http://localhost:9200/_ingest/pipeline/location_arrival_lookup"
-curl -XDELETE "http://localhost:9200/_ingest/pipeline/location_departure_lookup"
-curl -XDELETE "http://localhost:9200/_enrich/policy/location-policy"
 curl -XDELETE "http://localhost:9200/_enrich/policy/icao24-policy"
 curl -XDELETE "http://localhost:9200/_enrich/policy/icao-policy"
 curl -XDELETE "http://localhost:9200/flights1"
