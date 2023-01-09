@@ -10,8 +10,8 @@ from jupyter_dash import JupyterDash
 import plotly.graph_objects as go
 from dash import dash_table
 from pymongo import MongoClient
-
 import dash_bootstrap_components as dbc
+from datetime import datetime
 
 app = dash.Dash(__name__ , external_stylesheets=[dbc.themes.GRID,dbc.themes.BOOTSTRAP])
 server = app.server
@@ -49,15 +49,13 @@ def get_all_flights_last_state():
     return data
 
 
-states = pd.DataFrame(get_all_flights_last_state())
+
 CountryOriginDropdown = [
     html.Div([
         dcc.Dropdown(
             id='country_origin_dropdown',
             placeholder="Select Origin Country",
-            options=[
-                {'label': i, 'value': i} for i in states.origin_country.unique()
-            ],
+            options=[],
             multi=True
         ),
     ],
@@ -146,19 +144,34 @@ app.layout = dbc.Container([
 @app.callback(
     dash.dependencies.Output('table', 'data'),
     [dash.dependencies.Input('map', 'clickData'),
-     dash.dependencies.Input('interval-component', 'n_intervals'),
      dash.dependencies.Input('clear_selection_button', 'n_clicks')])
-def updateTable(clic_data, interval, nb_clicks):
+def updateTable(clic_data, nb_clicks):
     states = pd.DataFrame(get_all_flights_last_state())
-
     dt_temp1 = states.loc[states['icao24'] == clic_data["points"][0]["text"]]
+    
+    dt_temp1["time_position"] = dt_temp1["time_position"].apply(lambda t: datetime.fromtimestamp(t).strftime("%m/%d/%Y, %H:%M:%S"))
+    dt_temp1["last_contact"] = dt_temp1["last_contact"].apply(lambda t: datetime.fromtimestamp(t).strftime("%m/%d/%Y, %H:%M:%S"))
+    dt_temp1["extract_date"] = dt_temp1["extract_date"].apply(lambda t: datetime.fromtimestamp(t).strftime("%m/%d/%Y, %H:%M:%S"))
+    dt_temp1.rename(columns={'icao24': 'Flight number','callsign' : 'Signal', 'origin_country': 'Origin country','time_position':'Time position' , 'last_contact':'last contact','long':'Longitude','lat':'Latitude','baro_altitude':'Altitude', 'on_ground (T/F)':'On ground','velocity':'Velocity','true_track':'True track','vertical_rate':'Vertical rate','sensors':'Sensors','geo_altitude':'Geometric altitude','squawk':'Transponder code','spi':'Whether flight status','position_source':'Origin states positions','extract_date':'Extract date'}, inplace=True)
     dt_temp1 = dt_temp1.drop('_id', axis=1).drop_duplicates()
     dt_temp1 = dt_temp1.T.reset_index().T.reset_index(drop=True)
+    
 
+    
     if ctx.triggered_id == "clear_selection_button":
         return
 
     return dt_temp1.T.to_dict('records')
+
+
+@app.callback(
+    Output("country_origin_dropdown", "options"),
+    [Input("country_origin_dropdown", "search_value"),
+    dash.dependencies.Input('clear_selection_button', 'n_clicks')]
+)
+def update_options(search_value, nb_clicks):
+    states = pd.DataFrame(get_all_flights_last_state())
+    return list(states.origin_country.unique())
 
 
 @app.callback(
@@ -178,21 +191,32 @@ def display_map(country, interval, click_data, clear_button_data):
         df_states = pd.DataFrame(data)
         display_mode = 'lines'
        
-    elif trigger_id == 'country_origin_dropdown':
+    elif trigger_id == 'country_origin_dropdown' and country is not None:
         df_states = pd.DataFrame(get_all_flights_last_state())
         df_states = df_states[df_states.origin_country.isin(country)]
 
     else:
         df_states = pd.DataFrame(get_all_flights_last_state())
-       
-    fig = go.Figure(data=go.Scattermapbox(
-        lon=df_states['long'],
-        lat=df_states['lat'],
-        text=df_states['icao24'],
-        mode=display_mode,
-        line=dict(width=4),
     
-    ), )
+    
+    if df_states is not None and not df_states.empty:
+        fig = go.Figure(data=go.Scattermapbox(
+            lon=df_states['long'],
+            lat=df_states['lat'],
+            text=df_states['icao24'],
+            mode=display_mode,
+            line=dict(width=4),
+        
+        ), )
+    elif df_states is None or df_states.empty:
+        fig =         fig = go.Figure(data=go.Scattermapbox(
+            lon=[],
+            lat=[],
+            text=[],
+            mode=display_mode,
+            line=dict(width=4),
+        
+        ), )
     
     fig.update_layout(
         height=600,
