@@ -82,4 +82,4 @@ LoadPositionsInMongoDB = PythonOperator(
 )
 
 
-CheckMongoDBConnexion >> ExtractPositions >> LoadPositionsInMongoDB
+[CheckMongoDBConnexion , ExtractPositions] >> LoadPositionsInMongoDB

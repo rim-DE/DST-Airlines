@@ -77,6 +77,6 @@ LoadFlightsInES = PythonOperator(
 )
 
 
-CheckElasticSearchConnexion >> ExtractFlights >> LoadFlightsInES
+[CheckElasticSearchConnexion , ExtractFlights] >> LoadFlightsInES
 
 
