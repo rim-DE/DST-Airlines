@@ -133,7 +133,7 @@ exit
  <img width= "80%" src="./images/dash.png"/>
 </p>
 
-- Pour analyser des données des historiques des vols:
+- Pour analyser des données des historiques des vols, allez à l'URL http://localhost:5601/app/dashboards, puis cliquer sur le dashbord nommé "DST Airlines 2.0"
 
 <p align="center">
   <img width="80%" src="./images/kibana.png" />
