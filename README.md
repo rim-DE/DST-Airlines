@@ -4,7 +4,7 @@
 
 ## Revue sur le contenu
 
-La branche contient 8 répertoires dont doc contenant la documentation des étapes du projet, images contenant les figures utilisées dans ce readme et les autres contenant :
+La branche contient 8 répertoires dont le repertoire **doc** contenant la documentation des étapes du projet, le repertoire **images** contenant les figures utilisées dans ce readme et les autres repertoires contenant :
 
 - Un ou plusieurs scripts Python permettant la configuration et/ou le chargement du container portant le nom de ce répertoire.
 - Un fichier "requirements.txt" contenant les dépendances nécessaires pour la bonne exécution de ces scripts.
@@ -14,33 +14,33 @@ La branche contient 8 répertoires dont doc contenant la documentation des étap
 
 ### Présentation des répertoires
 
-a. doc: fichier de documentation concernant l'architecture de stockage adoptée
+a. **doc**: fichier de documentation concernant l'architecture de stockage adoptée
 
-b. images: contient les figures utilisées dans ce readme
+b. **images**: contient les figures utilisées dans ce readme
 
-c. Elasticsearch: pour créer 3 indexes ElasticSearch et les remplir 
+c. **Elasticsearch**:
 
-* Créer 3 indexes : flights, airports, companies
-* Créer un nouvel index Flights_enriched (init_kibana.sh):
+* Créer 3 indexes : flights, airports, companies, flights_enriched
+* Enrichir les données de flights avec celles contenues dans companies et airports pour les insérer dans flights_enriched (init_kibana.sh):
   - Configuration et exécution des pipelines de jointures
   - Réindexation des données au bon format
 * Charger un dashboard préconçu permettant d'analyser les données des 3 indexes dans Kibana (init_kibana.sh)
 
-d. MongoDB: pour créer et charger la base de données MongoDB à partir du scrapping de l'api OpenSky
+d. **MongoDB**: pour créer et charger la base de données MongoDB à partir des requêtes envoyées à l'api OpenSky
 
-e. mysql :
+e. **mysql** :
 
 * Créer et charger la base de données Mysql. Ce dossier contient les scripts du scrapping HTML des données des aéroports.
 * Les données sont extrtaites de ce site: https://www.world-airport-codes.com
 
-f. Dash : pour créer une map contenant les positions des avions en temps réel en utilisant les données stockées dans la base mongodb
+f. **Dash** : pour créer une map contenant les positions des avions en temps réel en utilisant les données stockées dans la base mongodb
 
-g. Logstash
+g. **Logstash**
 
-* Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'indexe airports
-* Créer un pipeline pour charger mensuellement la table compagnies contenue dans la base de données du container MySQL vers l'indexe companies
+* Créer un pipeline pour charger mensuellement la table aéroports contenue dans la base de données du container MySQL vers l'index airports
+* Créer un pipeline pour charger mensuellement la table compagnies contenue dans la base de données du container MySQL vers l'index companies
 
-h. Airflow: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elastic-search et mongo-db. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
+h. **Airflow**: Pour automatiser l'extraction des données et le chargement dans les bases: mysql, elasticsearch et mongodb. Il s'agit d'automatiser la partie ETL (Extract Transform Load) et de définir un DAG (Directed Acyclic Graph) pour chaque base.
 
 Les Dags définis dans Airflow sont:
 
@@ -52,7 +52,7 @@ Les Dags définis dans Airflow sont:
 
 
 
-2.  Le dag ElasticSearch pour l'automatisation du remplissage d'elasticsearch. Il s'exécute tous les jours à 8h du matin:
+2.  Le dag Elasticsearch pour l'automatisation du remplissage d'elasticsearch. Il s'exécute tous les jours à 8h du matin:
 
 <p align="center">
   <img width="60%" src="./images/dag_es.png" />
@@ -122,7 +122,7 @@ airflow dags trigger my_elastic_search_dag
 exit
 ```
 
-- Lancer le script qui permet la création de l'index enrichi dans elastic-search et le chargement du dashbord dans kibana
+- Lancer le script (depuis la racine) qui permet l'enrichissement des données elasticsearch et le chargement du dashbord dans kibana (cette opération peut prendre 5 minutes)
 ```bash
 ./elasticsearch/init_kibana.sh
 ```
@@ -140,14 +140,8 @@ exit
 </p>
 
                  
-## Pour accéder aux bases de données:
+## Accès aux bases de données:
 
-- Pour lancer mongoDB: http://127.0.0.1:8081/ 
-- Pour lancer Elasticsearch http://localhost:5601/ --> devtools --> Exécuter les requetes "POST flights/_count" , "GET /flights/_search", GET /airports/_count, GET /companies/_count, etc.
-- Pour inspecter les données mysql: installer un client en local (dbeaver par exemple) et tester. 
-
-
-
-
-
-
+- Accès à mongoDB: se rendre sur le lien http://127.0.0.1:8081/ 
+- Accès à Elasticsearch: se rendre sur le lien http://localhost:5601/ --> Ouvrir la console Dev Tools --> Exécuter les requêtes "GET flights/_search" , "GET /flights_enriched/_search", GET /airports/_count, GET /companies/_count, etc.
+- Accès à mysql: installer un client en local (dbeaver par exemple), le paramétrer et exécuter des requêtes SQL classiques. 
