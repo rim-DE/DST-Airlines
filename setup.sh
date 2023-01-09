@@ -11,3 +11,5 @@ docker-compose up airflow-init
 # lancement des différents services
 docker-compose up
 
+#Ajouter le droit d'éxécution à init_kibana.sh
+chmod +x elasticsearch/init_kibana.sh

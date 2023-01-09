@@ -105,7 +105,7 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
     "pipeline": "icao24_lookup"
   }
 }'
-
+sleep 10
 curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
 {
   "source": {
@@ -116,7 +116,7 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
     "pipeline": "icao_departure_lookup"
   }
 }'
-
+sleep 10
 curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
 {
   "source": {
@@ -127,7 +127,7 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
     "pipeline": "icao_arrival_lookup"
   }
 }'
-
+sleep 10
 
 #we reindex the data because the data are not in an appropriate format
 ### step5: reindex the data intoflights_enriched index
@@ -142,7 +142,7 @@ curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json'
   }
 }'
 
-
+sleep 10
 ### step6: delete policies , pipelines and transitional indexes
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao24_lookup"
 curl -XDELETE "http://localhost:9200/_ingest/pipeline/icao_departure_lookup"
@@ -153,7 +153,7 @@ curl -XDELETE "http://localhost:9200/flights1"
 curl -XDELETE "http://localhost:9200/flights2"
 curl -XDELETE "http://localhost:9200/flights3"
 
-
+sleep 10
 ## empty flights index
 curl -XPOST "http://localhost:9200/flights/_delete_by_query" -H 'Content-Type: application/json' -d'
 {
@@ -162,6 +162,6 @@ curl -XPOST "http://localhost:9200/flights/_delete_by_query" -H 'Content-Type: a
   }
 }'
 
-
+sleep 10
 ## set kibana dashboard up
 curl -X POST "http://localhost:5601/api/saved_objects/_import?overwrite=true" -H "kbn-xsrf: true" --form file=@elasticsearch/dashboard_dst_airlines_2.0.ndjson -H 'kbn-xsrf: true'
