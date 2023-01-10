@@ -4,7 +4,7 @@
 
 ## Revue sur le contenu
 
-La branche contient 8 répertoires dont le repertoire **doc** contenant la documentation des étapes du projet, le repertoire **images** contenant les figures utilisées dans ce readme et les autres repertoires contenant :
+La branche contient 8 répertoires dont le repertoire **documentation**, le repertoire **images** contenant les figures utilisées dans ce readme et les autres repertoires contenant :
 
 - Un ou plusieurs scripts Python permettant la configuration et/ou le chargement du container portant le nom de ce répertoire.
 - Un fichier "requirements.txt" contenant les dépendances nécessaires pour la bonne exécution de ces scripts.
@@ -14,7 +14,7 @@ La branche contient 8 répertoires dont le repertoire **doc** contenant la docum
 
 ### Présentation des répertoires
 
-a. **doc**: fichier de documentation concernant l'architecture de stockage adoptée
+a. **documentatin**: contient un fichier de documentation concernant l'architecture de stockage adoptée et un fichier contenant les slides utilisées pour présenter notre application
 
 b. **images**: contient les figures utilisées dans ce readme
 
