@@ -96,12 +96,16 @@ RQ: Le lancement des services es_load et kibana dépendent du service Elasticsea
 Le lancement des conteneurs et l'initialisation prend entre 20 et 30 minutes.
 Une fois le lancement est terminé et logstash fini tous les ETLs, vous pouvez passer à la suite.
 
-- Ouvrez un deuxième terminal
+- Ouvrer un deuxième terminal
 
 - Lancer les dags airflow, en accédant d'abord au conteneur airflow :
 ```bash
 docker exec -ti dst-airlines_airflow-scheduler_1 bash
 ```
+PS: Il se peut que votre serveur airflow s'appelle plutôt: dst-airlines-airflow-scheduler-1, dans ce cas utiliser ce nom au lieu de dst-airlines_airflow-scheduler_1 dans la commande précédente.
+
+
+
 - Une fois à l'intérieur du conteneur airflow, il s'agit de lancer les trois dags permettant l'automatisation du remplissage des bases de données.
 ```bash
 # activer le dag associé au remplissage de la base mysql
