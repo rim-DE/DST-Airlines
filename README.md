@@ -146,6 +146,6 @@ exit
                  
 ## Accès aux bases de données:
 
-- Accès à mongoDB: se rendre sur le lien http://127.0.0.1:8081/ 
+- Accès à mongoDB: se rendre sur le lien http://127.0.0.1:8081/ (username: admin, password: pass)
 - Accès à Elasticsearch: se rendre sur le lien http://localhost:5601/ --> Ouvrir la console Dev Tools --> Exécuter les requêtes "GET flights/_search" , "GET /flights_enriched/_search", GET /airports/_count, GET /companies/_count, etc.
 - Accès à mysql: installer un client en local (dbeaver par exemple), le paramétrer et exécuter des requêtes SQL classiques. 
